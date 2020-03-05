@@ -1,5 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="dbHotelModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="C__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
   <EntityType Name="Administrator">
     <Key>
       <PropertyRef Name="AdminID" />
@@ -10,6 +20,61 @@
     <Property Name="PWD" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="PhoneNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
     <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="AspNetRoles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Customers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="Customers" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaims">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Customers" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="Customers" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogins">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Customers" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="Customers" />
+  </EntityType>
+  <EntityType Name="Customers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PersonalID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Country" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="BirthDate" Type="DateTime" Precision="3" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+    <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="Customers" ToRole="AspNetUserClaims" />
+    <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="Customers" ToRole="AspNetUserLogins" />
+    <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="Customers" ToRole="AspNetRoles" />
   </EntityType>
   <EntityType Name="DiscountCode">
     <Key>
@@ -50,10 +115,10 @@
     <Property Name="Country" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
     <Property Name="City" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
     <Property Name="AddressEN" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="AddressCN" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="AddressCn" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="StarRated" Type="Decimal" Precision="2" Scale="1" />
     <Property Name="TaxIDNumber" Type="Int32" />
-    <Property Name="RegisterDate" Type="DateTime" Precision="0" />
+    <Property Name="RegisterDate" Type="DateTime" Precision="3" />
     <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="GoogleMapURL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="HotelTotalRoomQty" Type="Int32" />
@@ -61,20 +126,21 @@
     <Property Name="IsLocking" Type="Boolean" />
     <NavigationProperty Name="DiscountCode" Relationship="Self.FK_DiscountCode_Hotel" FromRole="Hotel" ToRole="DiscountCode" />
     <NavigationProperty Name="Employee" Relationship="Self.FK_Hotel_Employee" FromRole="Hotel" ToRole="Employee" />
-    <NavigationProperty Name="HotelImg" Relationship="Self.FK_HotelImg_Hotel" FromRole="Hotel" ToRole="HotelImg" />
+    <NavigationProperty Name="HotelImage" Relationship="Self.FK_HotelImage_Hotel" FromRole="Hotel" ToRole="HotelImage" />
+    <NavigationProperty Name="Message" Relationship="Self.FK_Message_Hotel" FromRole="Hotel" ToRole="Message" />
     <NavigationProperty Name="Orders" Relationship="Self.FK_Order_Hotel" FromRole="Hotel" ToRole="Orders" />
+    <NavigationProperty Name="RoomImage" Relationship="Self.FK_RoomImage_Hotel" FromRole="Hotel" ToRole="RoomImage" />
     <NavigationProperty Name="RoomInformation" Relationship="Self.FK_RoomInformation_Hotel" FromRole="Hotel" ToRole="RoomInformation" />
-    <NavigationProperty Name="RoomTypeImg" Relationship="Self.FK_RoomTypeImg_RoomType" FromRole="Hotel" ToRole="RoomTypeImg" />
   </EntityType>
-  <EntityType Name="HotelImg">
+  <EntityType Name="HotelImage">
     <Key>
       <PropertyRef Name="HotelImgID" />
     </Key>
     <Property Name="HotelImgID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="HotelID" Type="Int32" />
-    <Property Name="ImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
     <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Hotel" Relationship="Self.FK_HotelImg_Hotel" FromRole="HotelImg" ToRole="Hotel" />
+    <NavigationProperty Name="Hotel" Relationship="Self.FK_HotelImage_Hotel" FromRole="HotelImage" ToRole="Hotel" />
   </EntityType>
   <EntityType Name="Members">
     <Key>
@@ -93,7 +159,7 @@
     <Property Name="BirthDate" Type="DateTime" Precision="0" />
     <Property Name="IsLocking" Type="Boolean" />
     <Property Name="OrderCancelTimes" Type="Int32" />
-    <NavigationProperty Name="Orders" Relationship="Self.FK_Order_Members" FromRole="Members" ToRole="Orders" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Members" FromRole="Members" ToRole="Orders" />
   </EntityType>
   <EntityType Name="Message">
     <Key>
@@ -102,9 +168,10 @@
     <Property Name="MesageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="MemberID" Type="Int32" />
     <Property Name="HotelID" Type="Int32" />
-    <Property Name="Datetime" Type="DateTime" Precision="0" />
+    <Property Name="Datetime" Type="DateTime" Precision="3" />
     <Property Name="MessageTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Message1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Hotel" Relationship="Self.FK_Message_Hotel" FromRole="Message" ToRole="Hotel" />
   </EntityType>
   <EntityType Name="Orders">
     <Key>
@@ -130,10 +197,8 @@
     <Property Name="RoomID" Type="Int32" />
     <Property Name="PayInfoID" Type="Int32" />
     <NavigationProperty Name="Hotel" Relationship="Self.FK_Order_Hotel" FromRole="Orders" ToRole="Hotel" />
-    <NavigationProperty Name="Members" Relationship="Self.FK_Order_Members" FromRole="Orders" ToRole="Members" />
+    <NavigationProperty Name="Members" Relationship="Self.FK_Orders_Members" FromRole="Orders" ToRole="Members" />
     <NavigationProperty Name="RoomType" Relationship="Self.FK_Order_RoomType" FromRole="Orders" ToRole="RoomType" />
-    <NavigationProperty Name="Orders1" Relationship="Self.FK_Orders_Orders" FromRole="Orders" ToRole="Orders1" />
-    <NavigationProperty Name="Orders2" Relationship="Self.FK_Orders_Orders" FromRole="Orders1" ToRole="Orders" />
     <NavigationProperty Name="PayInfo" Relationship="Self.FK_Orders_PayInfo" FromRole="Orders" ToRole="PayInfo" />
     <NavigationProperty Name="RoomInformation" Relationship="Self.FK_Orders_RoomInformation" FromRole="Orders" ToRole="RoomInformation" />
   </EntityType>
@@ -147,6 +212,18 @@
     <Property Name="CardOwner" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="CardExp" Type="DateTime" Precision="0" />
     <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_PayInfo" FromRole="PayInfo" ToRole="Orders" />
+  </EntityType>
+  <EntityType Name="RoomImage">
+    <Key>
+      <PropertyRef Name="RoomImgID" />
+    </Key>
+    <Property Name="RoomImgID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HotelID" Type="Int32" />
+    <Property Name="RoomTypeID" Type="Int32" />
+    <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Hotel" Relationship="Self.FK_RoomImage_Hotel" FromRole="RoomImage" ToRole="Hotel" />
+    <NavigationProperty Name="RoomType" Relationship="Self.FK_RoomImage_RoomType" FromRole="RoomImage" ToRole="RoomType" />
   </EntityType>
   <EntityType Name="RoomInformation">
     <Key>
@@ -174,44 +251,45 @@
     <Property Name="UnitPrice_Normal" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
     <Property Name="UnitPrice_Holiday" Type="Decimal" Precision="19" Scale="4" />
     <Property Name="RoomQty" Type="Int32" />
-    <Property Name="RegisterDate" Type="DateTime" Precision="0" />
+    <Property Name="RegisterDate" Type="DateTime" Precision="3" />
     <Property Name="CanAddBed" Type="Boolean" />
     <Property Name="OfferBreakfast" Type="Boolean" />
     <Property Name="IsLocking" Type="Boolean" />
+    <Property Name="IsSubmit" Type="Boolean" />
+    <Property Name="RoomTypeImg" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="DiscountCode" Relationship="Self.FK_DiscountCode_RoomType" FromRole="RoomType" ToRole="DiscountCode" />
     <NavigationProperty Name="Orders" Relationship="Self.FK_Order_RoomType" FromRole="RoomType" ToRole="Orders" />
+    <NavigationProperty Name="RoomImage" Relationship="Self.FK_RoomImage_RoomType" FromRole="RoomType" ToRole="RoomImage" />
     <NavigationProperty Name="RoomInformation" Relationship="Self.FK_RoomInformation_RoomType" FromRole="RoomType" ToRole="RoomInformation" />
-    <Property Name="RoomTypeImg" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
-  <EntityType Name="RoomType_Submit">
-    <Key>
-      <PropertyRef Name="SubmitID" />
-    </Key>
-    <Property Name="SubmitID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="RoomTypeID" Type="Int32" Nullable="false" />
-    <Property Name="HoetlID" Type="Int32" />
-    <Property Name="RoomTypeNameCN" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="RoomGuests" Type="Int32" Nullable="false" />
-    <Property Name="UnitPrice_Normal" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
-    <Property Name="UnitPrice_Holiday" Type="Decimal" Precision="19" Scale="4" />
-    <Property Name="RoomQty" Type="Int32" />
-    <Property Name="RegisterDate" Type="DateTime" Precision="0" />
-    <Property Name="CanAddBed" Type="Boolean" />
-    <Property Name="OfferBreakfast" Type="Boolean" />
-    <Property Name="IsLocking" Type="Boolean" />
-    <Property Name="RoomTypeNameEN" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-  </EntityType>
-  <EntityType Name="RoomTypeImg">
-    <Key>
-      <PropertyRef Name="RoomImgID" />
-    </Key>
-    <Property Name="RoomImgID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="HotelID" Type="Int32" />
-    <Property Name="RoomTypeID" Type="Int32" />
-    <Property Name="ImgPath" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Hotel" Relationship="Self.FK_RoomTypeImg_RoomType" FromRole="RoomTypeImg" ToRole="Hotel" />
-  </EntityType>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Role="Customers" Type="Self.Customers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaims">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Role="Customers" Type="Self.Customers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogins">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_DiscountCode_Hotel">
     <End Role="Hotel" Type="Self.Hotel" Multiplicity="0..1" />
     <End Role="DiscountCode" Type="Self.DiscountCode" Multiplicity="*" />
@@ -248,14 +326,26 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_HotelImg_Hotel">
+  <Association Name="FK_HotelImage_Hotel">
     <End Role="Hotel" Type="Self.Hotel" Multiplicity="0..1" />
-    <End Role="HotelImg" Type="Self.HotelImg" Multiplicity="*" />
+    <End Role="HotelImage" Type="Self.HotelImage" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Hotel">
         <PropertyRef Name="HotelID" />
       </Principal>
-      <Dependent Role="HotelImg">
+      <Dependent Role="HotelImage">
+        <PropertyRef Name="HotelID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Message_Hotel">
+    <End Role="Hotel" Type="Self.Hotel" Multiplicity="0..1" />
+    <End Role="Message" Type="Self.Message" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hotel">
+        <PropertyRef Name="HotelID" />
+      </Principal>
+      <Dependent Role="Message">
         <PropertyRef Name="HotelID" />
       </Dependent>
     </ReferentialConstraint>
@@ -272,6 +362,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_RoomImage_Hotel">
+    <End Role="Hotel" Type="Self.Hotel" Multiplicity="0..1" />
+    <End Role="RoomImage" Type="Self.RoomImage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hotel">
+        <PropertyRef Name="HotelID" />
+      </Principal>
+      <Dependent Role="RoomImage">
+        <PropertyRef Name="HotelID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_RoomInformation_Hotel">
     <End Role="Hotel" Type="Self.Hotel" Multiplicity="0..1" />
     <End Role="RoomInformation" Type="Self.RoomInformation" Multiplicity="*" />
@@ -284,19 +386,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_RoomTypeImg_RoomType">
-    <End Role="Hotel" Type="Self.Hotel" Multiplicity="0..1" />
-    <End Role="RoomTypeImg" Type="Self.RoomTypeImg" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Hotel">
-        <PropertyRef Name="HotelID" />
-      </Principal>
-      <Dependent Role="RoomTypeImg">
-        <PropertyRef Name="HotelID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Order_Members">
+  <Association Name="FK_Orders_Members">
     <End Role="Members" Type="Self.Members" Multiplicity="0..1" />
     <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
     <ReferentialConstraint>
@@ -317,18 +407,6 @@
       </Principal>
       <Dependent Role="Orders">
         <PropertyRef Name="RoomTypeID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Orders_Orders">
-    <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
-    <End Role="Orders1" Type="Self.Orders" Multiplicity="0..1" />
-    <ReferentialConstraint>
-      <Principal Role="Orders">
-        <PropertyRef Name="OrderID" />
-      </Principal>
-      <Dependent Role="Orders1">
-        <PropertyRef Name="OrderID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -356,6 +434,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_RoomImage_RoomType">
+    <End Role="RoomType" Type="Self.RoomType" Multiplicity="0..1" />
+    <End Role="RoomImage" Type="Self.RoomImage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RoomType">
+        <PropertyRef Name="RoomTypeID" />
+      </Principal>
+      <Dependent Role="RoomImage">
+        <PropertyRef Name="RoomTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_RoomInformation_RoomType">
     <End Role="RoomType" Type="Self.RoomType" Multiplicity="0..1" />
     <End Role="RoomInformation" Type="Self.RoomInformation" Multiplicity="*" />
@@ -368,20 +458,36 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="dbHotelEntities" annotation:LazyLoadingEnabled="true">
+  <Association Name="AspNetUserRoles">
+    <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="*" />
+    <End Role="Customers" Type="Self.Customers" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="dbHotelTest_2020_03_03Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
     <EntitySet Name="Administrator" EntityType="Self.Administrator" />
+    <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" />
+    <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" />
+    <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" />
+    <EntitySet Name="Customers" EntityType="Self.Customers" />
     <EntitySet Name="DiscountCode" EntityType="Self.DiscountCode" />
     <EntitySet Name="Employee" EntityType="Self.Employee" />
     <EntitySet Name="Hotel" EntityType="Self.Hotel" />
-    <EntitySet Name="HotelImg" EntityType="Self.HotelImg" />
+    <EntitySet Name="HotelImage" EntityType="Self.HotelImage" />
     <EntitySet Name="Members" EntityType="Self.Members" />
     <EntitySet Name="Message" EntityType="Self.Message" />
     <EntitySet Name="Orders" EntityType="Self.Orders" />
     <EntitySet Name="PayInfo" EntityType="Self.PayInfo" />
+    <EntitySet Name="RoomImage" EntityType="Self.RoomImage" />
     <EntitySet Name="RoomInformation" EntityType="Self.RoomInformation" />
     <EntitySet Name="RoomType" EntityType="Self.RoomType" />
-    <EntitySet Name="RoomType_Submit" EntityType="Self.RoomType_Submit" />
-    <EntitySet Name="RoomTypeImg" EntityType="Self.RoomTypeImg" />
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="Customers" EntitySet="Customers" />
+      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="Customers" EntitySet="Customers" />
+      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
     <AssociationSet Name="FK_DiscountCode_Hotel" Association="Self.FK_DiscountCode_Hotel">
       <End Role="Hotel" EntitySet="Hotel" />
       <End Role="DiscountCode" EntitySet="DiscountCode" />
@@ -394,33 +500,33 @@
       <End Role="Employee" EntitySet="Employee" />
       <End Role="Hotel" EntitySet="Hotel" />
     </AssociationSet>
-    <AssociationSet Name="FK_HotelImg_Hotel" Association="Self.FK_HotelImg_Hotel">
+    <AssociationSet Name="FK_HotelImage_Hotel" Association="Self.FK_HotelImage_Hotel">
       <End Role="Hotel" EntitySet="Hotel" />
-      <End Role="HotelImg" EntitySet="HotelImg" />
+      <End Role="HotelImage" EntitySet="HotelImage" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Message_Hotel" Association="Self.FK_Message_Hotel">
+      <End Role="Hotel" EntitySet="Hotel" />
+      <End Role="Message" EntitySet="Message" />
     </AssociationSet>
     <AssociationSet Name="FK_Order_Hotel" Association="Self.FK_Order_Hotel">
       <End Role="Hotel" EntitySet="Hotel" />
       <End Role="Orders" EntitySet="Orders" />
     </AssociationSet>
+    <AssociationSet Name="FK_RoomImage_Hotel" Association="Self.FK_RoomImage_Hotel">
+      <End Role="Hotel" EntitySet="Hotel" />
+      <End Role="RoomImage" EntitySet="RoomImage" />
+    </AssociationSet>
     <AssociationSet Name="FK_RoomInformation_Hotel" Association="Self.FK_RoomInformation_Hotel">
       <End Role="Hotel" EntitySet="Hotel" />
       <End Role="RoomInformation" EntitySet="RoomInformation" />
     </AssociationSet>
-    <AssociationSet Name="FK_RoomTypeImg_RoomType" Association="Self.FK_RoomTypeImg_RoomType">
-      <End Role="Hotel" EntitySet="Hotel" />
-      <End Role="RoomTypeImg" EntitySet="RoomTypeImg" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Order_Members" Association="Self.FK_Order_Members">
+    <AssociationSet Name="FK_Orders_Members" Association="Self.FK_Orders_Members">
       <End Role="Members" EntitySet="Members" />
       <End Role="Orders" EntitySet="Orders" />
     </AssociationSet>
     <AssociationSet Name="FK_Order_RoomType" Association="Self.FK_Order_RoomType">
       <End Role="RoomType" EntitySet="RoomType" />
       <End Role="Orders" EntitySet="Orders" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Orders_Orders" Association="Self.FK_Orders_Orders">
-      <End Role="Orders" EntitySet="Orders" />
-      <End Role="Orders1" EntitySet="Orders" />
     </AssociationSet>
     <AssociationSet Name="FK_Orders_PayInfo" Association="Self.FK_Orders_PayInfo">
       <End Role="PayInfo" EntitySet="PayInfo" />
@@ -430,9 +536,17 @@
       <End Role="RoomInformation" EntitySet="RoomInformation" />
       <End Role="Orders" EntitySet="Orders" />
     </AssociationSet>
+    <AssociationSet Name="FK_RoomImage_RoomType" Association="Self.FK_RoomImage_RoomType">
+      <End Role="RoomType" EntitySet="RoomType" />
+      <End Role="RoomImage" EntitySet="RoomImage" />
+    </AssociationSet>
     <AssociationSet Name="FK_RoomInformation_RoomType" Association="Self.FK_RoomInformation_RoomType">
       <End Role="RoomType" EntitySet="RoomType" />
       <End Role="RoomInformation" EntitySet="RoomInformation" />
+    </AssociationSet>
+    <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="Customers" EntitySet="Customers" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

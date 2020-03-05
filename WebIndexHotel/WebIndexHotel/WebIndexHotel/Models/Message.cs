@@ -20,5 +20,7 @@ namespace WebIndexHotel.Models
         public Nullable<System.DateTime> Datetime { get; set; }
         public string MessageTitle { get; set; }
         public string Message1 { get; set; }
+    
+        public virtual Hotel Hotel { get; set; }
     }
 }

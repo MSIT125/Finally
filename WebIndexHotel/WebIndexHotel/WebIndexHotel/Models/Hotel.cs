@@ -18,10 +18,11 @@ namespace WebIndexHotel.Models
         public Hotel()
         {
             this.DiscountCode = new HashSet<DiscountCode>();
-            this.HotelImg = new HashSet<HotelImg>();
+            this.HotelImage = new HashSet<HotelImage>();
+            this.Message = new HashSet<Message>();
             this.Orders = new HashSet<Orders>();
+            this.RoomImage = new HashSet<RoomImage>();
             this.RoomInformation = new HashSet<RoomInformation>();
-            this.RoomTypeImg = new HashSet<RoomTypeImg>();
         }
     
         public int HotelID { get; set; }
@@ -31,7 +32,7 @@ namespace WebIndexHotel.Models
         public string Country { get; set; }
         public string City { get; set; }
         public string AddressEN { get; set; }
-        public string AddressCN { get; set; }
+        public string AddressCn { get; set; }
         public Nullable<decimal> StarRated { get; set; }
         public Nullable<int> TaxIDNumber { get; set; }
         public Nullable<System.DateTime> RegisterDate { get; set; }
@@ -45,12 +46,14 @@ namespace WebIndexHotel.Models
         public virtual ICollection<DiscountCode> DiscountCode { get; set; }
         public virtual Employee Employee { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<HotelImg> HotelImg { get; set; }
+        public virtual ICollection<HotelImage> HotelImage { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Message> Message { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Orders> Orders { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RoomInformation> RoomInformation { get; set; }
+        public virtual ICollection<RoomImage> RoomImage { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RoomTypeImg> RoomTypeImg { get; set; }
+        public virtual ICollection<RoomInformation> RoomInformation { get; set; }
     }
 }

@@ -19,6 +19,7 @@ namespace WebIndexHotel.Models
         {
             this.DiscountCode = new HashSet<DiscountCode>();
             this.Orders = new HashSet<Orders>();
+            this.RoomImage = new HashSet<RoomImage>();
             this.RoomInformation = new HashSet<RoomInformation>();
         }
     
@@ -33,11 +34,15 @@ namespace WebIndexHotel.Models
         public Nullable<bool> CanAddBed { get; set; }
         public Nullable<bool> OfferBreakfast { get; set; }
         public Nullable<bool> IsLocking { get; set; }
+        public Nullable<bool> IsSubmit { get; set; }
+        public string RoomTypeImg { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DiscountCode> DiscountCode { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Orders> Orders { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<RoomImage> RoomImage { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RoomInformation> RoomInformation { get; set; }
     }

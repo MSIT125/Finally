@@ -1,0 +1,36 @@
+﻿@model WebIndexHotel.Models.IndexViewModel
+@{
+    ViewBag.Title = "會員管理";
+}
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<h2>@ViewBag.Title.</h2>
+
+<p class="text-success">@ViewBag.StatusMessage</p>
+<div class="w3-sidebar w3-light-grey w3-bar-block" style="width:25%">
+    <h3>變更帳戶設定</h3>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>密碼:</dt>
+        <dd>
+            [
+            @if (Model.HasPassword)
+            {
+                @Html.ActionLink("變更密碼", "ChangePassword")
+            }
+            else
+            {
+                @Html.ActionLink("建立", "SetPassword")
+            }
+            ]
+        </dd>
+        <dt>會員資料:</dt>
+        <dd>[
+            @Html.ActionLink("修改會員資料", "EditUserInfo")]
+        </dd>
+        @*<dt class="w3-bar-item">外部登入:</dt>
+        <dd class="w3-bar-item">
+            @Model.Logins.Count [
+            @Html.ActionLink("管理", "ManageLogins") ]
+        </dd>*@
+    </dl>
+</div>

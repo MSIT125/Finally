@@ -1,7 +1,9 @@
 ﻿@model WebIndexHotel.Model.roomtypes
-
+@using WebIndexHotel.Viewmodel;
 @{
     ViewBag.Title = "各房型";
+    var dis_all = "DiscountCode :"+ Session["DiscountCode"] + " : " + Session["DiscountContent"]+" off !";
+    var dis_type= "DiscountCode :" + Session[$"DiscountCode{Model.RoomTypeNameCN}"] + " : " + Session[$"DiscountContent{Model.RoomTypeNameCN}"] + " off !";
 }
 
 <!-- Breadcrumb Section Begin -->
@@ -10,7 +12,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="breadcrumb-text">
-                    <h2>@Model.RoomTypeNameCN</h2>
+                    <h2>@Session["od_type"]</h2>
                     <div class="bt-option">
                         @Html.ActionLink("首頁", "Index", "Home")
                         <span>Rooms</span>
@@ -32,13 +34,14 @@
                         <hr />
 
                     </div>
-                    <img src="/img/room/room-details.jpg" alt="">
+                    <img src="@Model.RoomImg" alt="">
                     <div class="rd-text">
                         <div class="rd-title">
                             <h3>@Model.RoomTypeNameCN</h3>
-                            
+
                         </div>
                         <h2>@Model.UnitPrice_Normal<span>/Pernight</span></h2>
+                        <h2>@Model.UnitPrice_Holiday<span>/Pernight</span></h2>
                         <table>
                             <tbody>
                                 <tr>
@@ -59,9 +62,9 @@
                                 </tr>
                             </tbody>
                         </table>
-                        
-                        
-                    
+
+
+
 
 
 
@@ -86,33 +89,38 @@
             <div class="col-lg-4">
                 <div class="room-booking">
                     <h3>Your Reservation</h3>
-                    <form action="#">
+
+                    @using (Html.BeginForm("各房型", "Home", FormMethod.Post, new { @id = "order" }))
+                    {
                         <div class="check-date">
                             <label for="date-in">Check In:</label>
-                            <input type="text" class="date-input" id="date-in">
+                            <input type="text" class="date-input" id="date_in" name="date_in" value="@Session["qcin"].ToString()">
                             <i class="icon_calendar"></i>
                         </div>
                         <div class="check-date">
                             <label for="date-out">Check Out:</label>
-                            <input type="text" class="date-input" id="date-out">
+                            <input type="text" class="date-input" id="date_out" name="date_out" value="@Session["qcout"].ToString()">
                             <i class="icon_calendar"></i>
                         </div>
                         <div class="select-option">
                             <label for="guest">Roomtype:</label>
-                            <select id="guest">
-                                <option value="">@Model.RoomTypeNameCN</option>
+                            <select name="room_type" id="guest">
+                                <option selected="selected" value="@Model.RoomTypeNameCN">@Model.RoomTypeNameCN</option>
                             </select>
                         </div>
                         <div class="select-option">
                             <label for="room">Room:</label>
-                            <select id="room">
-                                <option value="">1 Room</option>
-                                <option value="">2 Room</option>
-                                <option value="">3 Room</option>
+                            <select name="room_qty" id="room">
+                                <option selected="selected" value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
                             </select>
                         </div>
-                        <button type="submit">Booking Now</button>
-                    </form>
+                        <button type="submit" id="booking">Booking Now</button>
+                        if (Session["DiscountCode"] != null) {<div class="b-tag">@dis_all </div> }
+                        if (Session[$"DiscountCode{Model.RoomTypeNameCN}"] != null) {<div class="b-tag">@dis_type </div> }
+                        
+                    }
                 </div>
             </div>
         </div>
@@ -120,76 +128,120 @@
 </section>
 
 @section scripts{
-    
 
-<script>
 
-        document.addEventListener('DOMContentLoaded', function () {
-            var calendarEl = document.getElementById('calendar');
+    <script>
 
-            var calendar = new FullCalendar.Calendar(calendarEl, {
+
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    var calendarEl = document.getElementById('calendar');
+
+
+    var calendar = new FullCalendar.Calendar(calendarEl, {
                 plugins: ['interaction', 'dayGrid'],
                 selectable: true,
                 header: {
-                    defaultView: 'dayGridMonth'
+        defaultView: 'dayGridMonth'
                 },
                 businessHours: true,
                 select: function (info) {
-                 
-                     $("#date-in").val(info.startStr);
-                    $("#date-out").val(info.endStr);
-                  
-                    
+
+                $("#date_in").val(info.startStr);
+                 $("#date_out").val(info.endStr);
+                    console.log(info.endStr)
+                    console.log(info.startStr)
+                    $("#booking").click(function () {
+                        
+                        $.ajax({
+                            url: '/Home/檢查日期',
+                            type: 'get',
+                            dataType: 'JSON',
+                            data: { 'datein': $("#date_in").val(), 'dateout':$("#date_out").val(),'roomid':@Model.RoomtypeID},
+
+                        }).done(function (count) {
+                            if (count == 0) {
+
+                                alert("所選日無空房")
+                                location.reload()
+                            }
+                            else {
+                                    $("#order").submit();
+                                   }
+                            })
+
+
+
+
+
+                    })
+
                 },
                 events: [
 
-                        @for (int i = 0; i <60; i++)
+
+                        @for (int i = 0; i < 60; i++)
                         {
-                            if (System.DateTime.Today.AddDays(i).DayOfWeek.ToString("d") == "0" ||System.DateTime.Today.AddDays(i).DayOfWeek.ToString("d")=="6")
-                            {
+
+
+
+            if (System.DateTime.Today.AddDays(i).DayOfWeek.ToString("d") == "0" || System.DateTime.Today.AddDays(i).DayOfWeek.ToString("d") == "6")
+            {
+
                        @: {
                        @: title: '@Model.UnitPrice_Holiday',
                        @: start: '@System.DateTime.Today.AddDays(i).ToString("yyyy-MM-dd")',
                        @: color: 'gold'
                        @: },
 
-
                             }
                             else
                             {
 
                         @:{
-
                         @: title: '@Model.UnitPrice_Normal',
                         @:start: '@System.DateTime.Today.AddDays(i).ToString("yyyy-MM-dd")',
-                       @: color: '#DFA974'
-                      @:},
+                        @: color: '#DFA97480'
+                        @:},
 
                             }
+                            if (Model.dateQty[i].Equals(0))
+                            {
+                            @:{
 
+                                  @:title: '剩 @Model.dateQty[i] 房',
+                                  @:start: '@System.DateTime.Today.AddDays(i).ToString("yyyy-MM-dd")',
+                                  @:color:'red'
+                            @:},
+                            }
+                            else
+                            {
+                                  @:{
 
-
-
-
-
+                                  @:title: '剩 @Model.dateQty[i] 房',
+                                  @:start: '@System.DateTime.Today.AddDays(i).ToString("yyyy-MM-dd")',
+                                  @:color:'orange'
+                            @:},
+                            }
 
 
                         }
 
 
 
-
-
-
-
                 ]
+
 
 
             });
 
             calendar.render();
+
     });
 
 
-</script>
+
+
+    </script>
 }
