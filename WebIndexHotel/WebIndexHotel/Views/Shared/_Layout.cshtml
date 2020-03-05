@@ -80,10 +80,18 @@
                                         </ul>
                                     </li>
                                     <li>@Html.ActionLink("關於我們", "關於我們", "Home")</li>
-                                    
+                                    @*<li>
+                                            <a href="./pages.html">Pages</a>
+                                            <ul class="dropdown">
+                                                <li><a href="./room-details.html">Room Details</a></li>
+                                                <li><a href="./blog-details.html">Blog Details</a></li>
+                                                <li><a href="#">Family Room</a></li>
+                                                <li><a href="#">Premium Room</a></li>
+                                            </ul>
+                                        </li>*@
                                     <li>@Html.ActionLink("最新消息", "最新優惠", "Home")</li>
                                     <li>@Html.ActionLink("聯絡", "Contact", "Home")</li>
-                                    @Html.Partial("_LoginPartial")
+                                    <li>@Html.ActionLink("登入/註冊", "Login", "Home")</li>
                                 </ul>
                             </nav>
 

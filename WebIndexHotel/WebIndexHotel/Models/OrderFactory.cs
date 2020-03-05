@@ -11,17 +11,17 @@ namespace WebIndexHotel.Models
     public class OrderFactory
     {
 
-        private dbHotelTest_3_2_2020Entities db;
+        private dbHotelTest_2020_03_03Entities db;
 
         public OrderFactory()
         {
-            db = new dbHotelTest_3_2_2020Entities();
+            db = new dbHotelTest_2020_03_03Entities();
         }
 
         //create ORDERS
         public void CreateOrderData(int MemberID, int HotelID, string RoomTypeNameCN, DateTime CheckInDate, DateTime CheckOutDate,
             int Duration, decimal Price, string CustomerName, string CustomerEmail, string PhoneNumber, string Payment, string CardOwner,
-            string CreditCardNumber, string CreditCardCode, int OfferBreakfast, int AddBed)
+            string CreditCardNumber, string CreditCardCode, int OfferBreakfast, int AddBed, string DiscountCode, decimal money)
         {
             Orders o = new Orders();
             PayInfo p = new PayInfo();
@@ -34,14 +34,15 @@ namespace WebIndexHotel.Models
             o.CheckInDate = CheckInDate;
             o.CheckOutDate = CheckOutDate;
             o.Duration = Duration;
-            o.Price = Price;
+            o.Price = money;
             o.CustomerName = CustomerName;
             o.CustomerEmail = CustomerEmail;
             o.CustomerPhone = PhoneNumber;
             o.Payment = Payment;
             o.OfferBreakfast = OfferBreakfast;
             o.AddBed = AddBed;
-
+            o.DiscountCode = DiscountCode;
+           
 
             p.CardOwner = CardOwner;
             p.CreditCardNumber = CreditCardNumber;

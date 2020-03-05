@@ -15,27 +15,15 @@ namespace WebIndexHotel.Controllers
     public class HomeController : Controller
     {
 
-        dbHotelTest_3_2_2020Entities db = new dbHotelTest_3_2_2020Entities();
+        dbHotelTest_2020_03_03Entities db = new dbHotelTest_2020_03_03Entities();
         OrderFactory of =new OrderFactory();
 
        
         public ActionResult Index()
         {
             var table = from p in db.RoomType select p;
-            List<roomtypes> x = new List<roomtypes>();
             Hotelfactory hf = new Hotelfactory();
             ViewBag.discount = hf.Discounts();
-            foreach (var item in table)
-            {roomtypes r = new roomtypes();
-                r.RoomTypeNameCN = item.RoomTypeNameCN;
-                r.RoomtypeID = item.RoomTypeID;
-                r.RoomImg = item.RoomTypeImg;
-                r.UnitPrice_Holiday = Convert.ToInt32(item.UnitPrice_Holiday);
-                r.UnitPrice_Normal = Convert.ToInt32(item.UnitPrice_Normal);
-                r.RoomGuests = item.RoomGuests;
-                x.Add(r);
-            }
-
             List<SelectListItem> items = new List<SelectListItem>()
             {
                 new SelectListItem(){ Text="1",Value="1"},
@@ -57,8 +45,7 @@ namespace WebIndexHotel.Controllers
             Session["qcin"] = DateTime.Today.ToString("yyyy-MM-dd");
             Session["qcout"] = DateTime.Today.AddDays(1).ToString("yyyy-MM-dd");
             Session["customer"] = 2;
-            ViewBag.roomtype = x;
-            return View();
+            return View(table);
         }
 
         [HttpPost]
@@ -70,7 +57,7 @@ namespace WebIndexHotel.Controllers
                 Session["qcout"] = qc.date_out;
 
                 Session["customer"] = Convert.ToInt32(qc.guest);
-                
+                dbHotelTest_2020_03_03Entities db = new dbHotelTest_2020_03_03Entities();
                 var daysearchin = Convert.ToDateTime(qc.date_in);
                 var order_condition = (from p in db.Orders where p.OrderDate == daysearchin select p).ToList();
                 var result_room = 訂房搜尋引擎.搜尋空房資料(qc, order_condition);
@@ -122,11 +109,11 @@ namespace WebIndexHotel.Controllers
             
             var D_in = Convert.ToDateTime(orders_data.date_in);
             var D_out = Convert.ToDateTime(orders_data.date_out);
-            var selected_Type = Session["od_type"].ToString();
+            var selected_Type = Session[Session_Dictionary.od_type].ToString();
             var q = db.RoomType.Where(p => p.RoomTypeNameCN == selected_Type).Select(p => p).First();
             //if (Session["login"] != null)
             //{
-            Session["qcin"] = orders_data.date_in;
+            Session[Session_Dictionary.qcin] = orders_data.date_in;
             Session["qcout"] = orders_data.date_out;
             Session["od_qty"] = orders_data.room_qty;
             Session["memberID"] = 1;
@@ -156,11 +143,20 @@ namespace WebIndexHotel.Controllers
         {
             return View(result_input);
         }
-       
+        public ActionResult Login()
+        {           
+            return View();
+        }
         public ActionResult 訂房頁面(LOrders data)
         {
           
-         
+            //if (Session[ODictionary.SS_MemberID] != null)
+            //{
+            //    // CustomerName = Session[ODictionary.SS_CustomerName];
+            //}
+
+            //if (string.IsNullOrEmpty(data.MemberID))
+            //    return View();
             return View();
         }
 
@@ -169,10 +165,11 @@ namespace WebIndexHotel.Controllers
         [HttpPost]
         public ActionResult 訂房頁面(int MemberID, DateTime OrderDate, int HotelID, string RoomTypeNameCN, DateTime CheckInDate, DateTime CheckOutDate,
             int Duration, decimal Price, string CustomerName, string CustomerEmail, string PhoneNumber, string Payment, string CardOwner, string CreditCardNumber,
-            string CreditCardCode, int OfferBreakfast, int AddBed)
+            string CreditCardCode, int OfferBreakfast, int AddBed,string DiscountCode,string money)
         {
+            var finalPrice = Convert.ToDecimal(money);
             of.CreateOrderData(MemberID, HotelID, RoomTypeNameCN, CheckInDate, CheckOutDate, Duration, Price, CustomerName, CustomerEmail,
-                PhoneNumber, Payment, CardOwner, CreditCardNumber, CreditCardCode, OfferBreakfast, AddBed);
+                PhoneNumber, Payment, CardOwner, CreditCardNumber, CreditCardCode, OfferBreakfast, AddBed, DiscountCode, finalPrice);
 
             var OrderDetail = of.GetOrderID(MemberID);
 
@@ -251,7 +248,6 @@ namespace WebIndexHotel.Controllers
 
             return Json(check, JsonRequestBehavior.AllowGet); 
         }
-
 
     }
 }

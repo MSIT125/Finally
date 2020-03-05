@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "最新優惠";
+
 }
 
 
@@ -26,6 +27,8 @@
 <section class="blog-section blog-page spad">
     <div class="container">
         <div class="row">
+
+
             @foreach (var item in Model)
             {
                 <div class="col-lg-4 col-md-6">
@@ -35,11 +38,11 @@
                             @if (item.Roomtypename == null)
                             {
                                 <h4><a href="@item.roomurl">全館優惠中...</a></h4>
-                                if (item.Dollar == 0)
+                                if(item.Dollar==0)
                                 {
                                     var percentage_off = (1 - item.Percentage) * 100;
                                     System.Web.HttpContext.Current.Session["DiscountCode"] = item.DiscountCode;
-                                    System.Web.HttpContext.Current.Session["DiscountContent"] = percentage_off + " %";
+                                    System.Web.HttpContext.Current.Session["DiscountContent"] = percentage_off+" %";
 
 
                                 }
@@ -58,12 +61,12 @@
                                 {
                                     var percentage_off = (1 - item.Percentage) * 100;
                                     System.Web.HttpContext.Current.Session[$"DiscountCode{item.Roomtypename}"] = item.DiscountCode;
-                                    System.Web.HttpContext.Current.Session[$"DiscountContent{item.Roomtypename}"] = percentage_off + " %";
+                                    System.Web.HttpContext.Current.Session[$"DiscountContent{item.Roomtypename}"] = percentage_off +" %";
                                 }
                                 else
                                 {
                                     System.Web.HttpContext.Current.Session[$"DiscountCode{item.Roomtypename}"] = item.DiscountCode;
-                                    System.Web.HttpContext.Current.Session[$"DiscountContent{item.Roomtypename}"] = item.Dollar + " $";
+                                    System.Web.HttpContext.Current.Session[$"DiscountContent{item.Roomtypename}"]=item.Dollar +" $";
 
                                 }
 
@@ -76,6 +79,7 @@
                 </div>
 
             }
+
 
         </div>
     </div>

@@ -15,6 +15,5 @@ namespace WebIndexHotel.Model
         public int UnitPrice_Holiday { get; set; }
         public int RoomQty { get; set; }
         public ArrayList dateQty { get; set; }
-        public int RoomGuests { get; set; }
     }
 }

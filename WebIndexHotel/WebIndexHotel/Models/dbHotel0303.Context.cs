@@ -13,10 +13,10 @@ namespace WebIndexHotel.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class dbHotelTest_3_2_2020Entities : DbContext
+    public partial class dbHotelTest_2020_03_03Entities : DbContext
     {
-        public dbHotelTest_3_2_2020Entities()
-            : base("name=dbHotelTest_3_2_2020Entities")
+        public dbHotelTest_2020_03_03Entities()
+            : base("name=dbHotelTest_2020_03_03Entities")
         {
         }
     

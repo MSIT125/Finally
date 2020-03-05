@@ -1,0 +1,274 @@
+﻿@model WebIndexHotel.Models.Orders
+@using WebIndexHotel.Models
+
+@{
+    ViewBag.Title = "檢視訂單結果";
+}
+
+
+<section class="hero-section" style="background-color:snow">
+
+    <div class="container">
+
+        <div class="booking-form">
+
+            <h3 style="text-align:center; "><font style="vertical-align:inherit; border-bottom-style:solid;border-bottom-color:antiquewhite">訂單資訊確認</font></h3>
+
+            <div>
+
+                <font style="vertical-align:inherit;text-align:center;">訂單編號： @Html.DisplayFor(model => model.OrderID)</font>
+
+                <hr />
+                <h5 style="text-align:center;"><font style="vertical-align:inherit;">訂單資訊</font></h5><br /><br />
+                <div class="row">
+
+                    <div class="col-lg-4">
+
+                        <div class="check-date">
+                            <label for="date-in">
+                                <font style="vertical-align:inherit;">會員編號：</font>
+                                <font style="vertical-align:inherit;">@Html.DisplayFor(model => model.MemberID)</font>
+                            </label>
+                        </div>
+                        <br />
+                        <div class="check-date">
+                            <label for="date-in">
+                                <font style="vertical-align:inherit;">旅館分館：</font>
+                                <font style="vertical-align:inherit;">@Html.DisplayFor(model => model.HotelID)</font>
+                            </label>
+                        </div>
+                        <br />
+                        <div class="check-date">
+                            <label for="date-in">
+                                <font style="vertical-align:inherit;">房間型號：</font>
+                                <font style="vertical-align:inherit;">@Html.DisplayFor(model => model.RoomType.RoomTypeNameCN)</font>
+                            </label>
+                        </div>
+                        <br />
+                        <div class="check-date">
+                            <label for="date-in">
+                                <font style="vertical-align:inherit;">訂購日期：</font>
+                                <font style="vertical-align:inherit;">@Html.DisplayFor(model => model.OrderDate)</font>
+                            </label>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="col-xl-4 col-lg-6 offset-xl-2 offset-lg-1">
+
+                        <div class="check-date">
+                            <label for="date-in">
+                                <font style="vertical-align:inherit;">入住日期：</font>
+                                <font style="vertical-align:inherit;">@Html.DisplayFor(model => model.CheckInDate,"DateTimeTemplate")</font>
+                            </label>
+                        </div>
+                        
+                        <div class="check-date">
+                            <label for="date-in">
+                                <font style="vertical-align:inherit;">退房日期：</font>
+                                <font style="vertical-align:inherit;">@Html.DisplayFor(model =>model.CheckOutDate, "DateTimeTemplate")</font>
+                            </label>
+                        </div>
+                        <br />
+                        <div class="check-date">
+                            <label for="date-in">
+                                <font style="vertical-align:inherit;">入住天數：</font>
+                                <font style="vertical-align:inherit;">@Html.DisplayFor(model => model.Duration)</font>
+                            </label>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+                <hr />
+
+                <div class="check-date">
+
+                    <h5 style="text-align:center;"><font style="vertical-align:inherit;">備註</font></h5><br />
+
+                    <label for="date-in">
+                        <font style="vertical-align:inherit;">早餐：</font>
+                        <font style="vertical-align:inherit;">@Html.DisplayFor(model => model.OfferBreakfast)</font>
+
+                        &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;
+                        &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;
+                        &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;
+
+                        <font style="vertical-align:inherit;">加床：</font>
+                        <font style="vertical-align:inherit;">@Html.DisplayFor(model => model.AddBed)</font>
+                    </label>
+                </div>
+
+
+                <br>
+                <hr>
+                <h5 style="text-align:center;">會員資料</h5>
+                <br>
+
+                <div class="check-date">
+                    <label for="date-in">
+                        <font style="vertical-align:inherit;">訂購人姓名：</font>
+                        <font style="vertical-align:inherit;" id="custName1">@Html.DisplayFor(model => model.CustomerName)</font>
+                    </label>
+                </div>
+                <br />
+                <div class="check-date">
+                    <label for="date-in">
+                        <font style="vertical-align:inherit;">聯絡信箱 &nbsp;  &nbsp; ：</font>
+                        <font style="vertical-align:inherit;" id="custMail1">@Html.DisplayFor(model => model.CustomerEmail)</font>
+                    </label>
+                </div>
+                <br />
+                <div class="check-date">
+                    <label for="date-in">
+                        <font style="vertical-align:inherit;">連絡電話 &nbsp;  &nbsp; ：</font>
+                        <font style="vertical-align:inherit;" id="custPhone1">@Html.DisplayFor(model => model.CustomerPhone)</font>
+                    </label>
+                </div>
+
+
+                <br>
+                <hr>
+                <h5 style="text-align:center;">付款介面</h5>
+                <br>
+                <br />
+
+                <div class="check-date">
+                    <label for="date-in">
+                        <font style="vertical-align:inherit;">付款方式 &nbsp; &nbsp;：</font>
+                        <font style="vertical-align:inherit;">@Html.DisplayFor(model => model.Payment)</font>
+                    </label>
+                </div>
+
+                <br />
+                <div class="check-date">
+                    <label for="date-in">
+                        <font style="vertical-align:inherit;">持卡人姓名：</font>
+                        <font style="vertical-align:inherit;">@Html.DisplayFor(model => model.PayInfo.CardOwner)</font>
+                    </label>
+                </div>
+
+                <br />
+                <div class="check-date">
+                    <label for="date-in">
+                        <font style="vertical-align:inherit;">信用卡卡號：</font>
+                        <font style="vertical-align:inherit;">@Html.DisplayFor(model => model.PayInfo.CreditCardNumber)</font>
+                    </label>
+                </div>
+
+                <br />
+                <div class="check-date">
+                    <label for="date-in">
+                        <font style="vertical-align:inherit;">末三碼 &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;：</font>
+                        <font style="vertical-align:inherit;">@Html.DisplayFor(model => model.PayInfo.CreditCardCode)</font>
+                    </label>
+                </div><br />
+
+                <hr />
+
+                <br />
+
+                <div class="check-date">
+                    <label for="date-in">
+                        <font style="vertical-align:inherit;">優惠碼：</font>
+                        <font style="vertical-align:inherit;" id="disCode">@Html.DisplayFor(model => model.DiscountCode)</font>
+                        @*<div style="display:none" id="price1">@Html.DisplayFor(model => model.DiscountCode.Length)</div>*@
+                    </label>
+                </div>
+                <br /><br />
+                <div style="text-align:center;" class="check-date">
+                    <label for="date-in">
+                        <font style="vertical-align:inherit;font-size:18px;font-weight:bold">結餘金額</font><br /><br />                        
+                        <font style="vertical-align:inherit;font-size:20px;font-weight:bold;color:orange"><div id="finalPrice">@Model.Price</div></font>
+                    </label>
+                </div>
+                <br /><br />
+                @*@Html.DisplayNameFor(model => model.RoomID)
+        @Html.DisplayFor(model => model.RoomID)*@
+
+
+                @*@Html.DisplayNameFor(model => model.OrderState)
+        @Html.DisplayFor(model => model.OrderState)*@
+
+
+            </div>
+
+
+            <br />
+            <div id="paypal-button-container"></div>
+            <br />
+            @*<div style="text-align:center;">@Html.ActionLink("確認", "Index", "Home", new { @class = "btn btn-warning" })</div>*@
+
+        </div>
+
+
+
+    </div>
+
+
+
+</section>
+
+@section styles{
+<script src="https://www.paypal.com/sdk/js?client-id=AWsUqlos6FpTREILb6ZR2r1UYjnmeivOwzTy5IwFgxa31OSMcp8a9y9zW1v5_swU7-6qw8QnwnMEr-5h&currency=TWD">
+ // Required. Replace SB_CLIENT_ID with your sandbox client ID.
+</script>
+    }
+
+@section scripts{
+<script>
+
+    //var disCode = parseInt($("#disCode").text());
+    var custLastName = ($("#custName1").text());
+    var custMail = ($("#custMail1").text());
+    var custPhone = ($("#custPhone1").text());
+    var custFirstname = 'PETER';
+    var finalPrice = '@Model.Price';
+    //var finalPrice = '5';
+    console.log(custFirstname)
+
+    paypal.Buttons({
+        enableStandardCardFields: true,
+        createOrder: function (data, actions) {
+            return actions.order.create({
+                intent: 'CAPTURE',
+                payer: {
+                    name: {
+                        given_name: custFirstname,
+                        surname: custLastName
+                    },
+                    email_address: custMail,
+                    phone: {
+                        phone_type: "MOBILE",
+                        phone_number: {
+                            national_number:custPhone
+                        }
+                    }
+                },
+                purchase_units: [
+                    {
+                        amount: {
+                            value: finalPrice,
+                        },
+
+                    }
+                ]
+            })
+        },
+        onApprove: function (data, actions) {
+            // This function captures the funds from the transaction.
+            return actions.order.capture().then(function (details) {
+                // This function shows a transaction success message to your buyer.
+                $(location).prop('href', '/Home/Index')
+            }).then(function () {
+                alert('付款成功');
+                });
+        }
+
+    }).render("#paypal-button-container");
+</script>
+    }
+
+
+

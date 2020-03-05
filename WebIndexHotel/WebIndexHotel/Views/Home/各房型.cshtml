@@ -2,8 +2,8 @@
 @using WebIndexHotel.Viewmodel;
 @{
     ViewBag.Title = "各房型";
-    var dis_all = "DiscountCode :" + Session["DiscountCode"] + " : " + Session["DiscountContent"] + " off !";
-    var dis_type = "DiscountCode :" + Session[$"DiscountCode{Model.RoomTypeNameCN}"] + " : " + Session[$"DiscountContent{Model.RoomTypeNameCN}"] + " off !";
+    var dis_all = "DiscountCode :"+ Session["DiscountCode"] + " : " + Session["DiscountContent"]+" off !";
+    var dis_type= "DiscountCode :" + Session[$"DiscountCode{Model.RoomTypeNameCN}"] + " : " + Session[$"DiscountContent{Model.RoomTypeNameCN}"] + " off !";
 }
 
 <!-- Breadcrumb Section Begin -->
@@ -40,8 +40,8 @@
                             <h3>@Model.RoomTypeNameCN</h3>
 
                         </div>
-                        <h2>@Model.UnitPrice_Normal<span>/平日</span></h2>
-                        <h2>@Model.UnitPrice_Holiday<span>/假日</span></h2>
+                        <h2>@Model.UnitPrice_Normal<span>/Pernight</span></h2>
+                        <h2>@Model.UnitPrice_Holiday<span>/Pernight</span></h2>
                         <table>
                             <tbody>
                                 <tr>
@@ -86,10 +86,10 @@
                     </div>
                 </div>
             </div>
-
             <div class="col-lg-4">
                 <div class="room-booking">
                     <h3>Your Reservation</h3>
+
                     @using (Html.BeginForm("各房型", "Home", FormMethod.Post, new { @id = "order" }))
                     {
                         <div class="check-date">
@@ -117,12 +117,10 @@
                             </select>
                         </div>
                         <button type="submit" id="booking">Booking Now</button>
-                        if (Session["DiscountCode"] != null)
-                        {<div class="b-tag">@dis_all </div> }
-                    if (Session[$"DiscountCode{Model.RoomTypeNameCN}"] != null)
-                    {<div class="b-tag">@dis_type </div>}
-
-            }
+                        if (Session["DiscountCode"] != null) {<div class="b-tag">@dis_all </div> }
+                        if (Session[$"DiscountCode{Model.RoomTypeNameCN}"] != null) {<div class="b-tag">@dis_type </div> }
+                        
+                    }
                 </div>
             </div>
         </div>
@@ -133,9 +131,9 @@
 
 
     <script>
-    
-     
-       
+
+
+
 
 document.addEventListener('DOMContentLoaded', function () {
     var calendarEl = document.getElementById('calendar');
@@ -155,7 +153,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     console.log(info.endStr)
                     console.log(info.startStr)
                     $("#booking").click(function () {
-
+                        
                         $.ajax({
                             url: '/Home/檢查日期',
                             type: 'get',
@@ -175,7 +173,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-                  
+
 
                     })
 
@@ -243,7 +241,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
 
- 
-        
+
+
     </script>
 }

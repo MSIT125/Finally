@@ -152,7 +152,6 @@
     <Property Name="UnitPrice_Normal" Type="money" Nullable="false" />
     <Property Name="UnitPrice_Holiday" Type="money" />
     <Property Name="RoomQty" Type="int" />
-    <Property Name="RoomTypeImg" Type="nvarchar(max)" />
     <Property Name="RegisterDate" Type="date" />
     <Property Name="CanAddBed" Type="bit" />
     <Property Name="OfferBreakfast" Type="bit" />

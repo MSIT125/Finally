@@ -10,7 +10,7 @@ namespace WebIndexHotel.Models
 {
     public class Hotelfactory
     {
-        dbHotelTest_3_2_2020Entities db = new dbHotelTest_3_2_2020Entities();
+        dbHotelTest_2020_03_03Entities db = new dbHotelTest_2020_03_03Entities();
 
         public List<roomtypes> getall()
         {
@@ -28,7 +28,6 @@ namespace WebIndexHotel.Models
 
             return list;
         }
-
         public roomtypes room (string name)
         {
              roomtypes x = new roomtypes();
@@ -73,7 +72,6 @@ namespace WebIndexHotel.Models
 
             return x;
         }
-
         public int datecheck(string datein,string dateout,int roomid)
         {
             int count;
@@ -131,6 +129,7 @@ namespace WebIndexHotel.Models
 
             return discounts;
         }
+
 
 
     }

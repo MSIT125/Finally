@@ -29,7 +29,7 @@ namespace WebIndexHotel.Controllers
             ViewBag.Countries = new SelectList(CountryList(), "Key", "Value"); //國家下拉式選單
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -41,9 +41,9 @@ namespace WebIndexHotel.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set
-            {
-                _signInManager = value;
+            private set 
+            { 
+                _signInManager = value; 
             }
         }
 
@@ -65,13 +65,14 @@ namespace WebIndexHotel.Controllers
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
-            return PartialView();
+            Session[Session_Dictionary.login] = returnUrl;//TODO
+            return View();
         }
 
         //
         // POST: /Account/Login
         [HttpPost]
-        [CaptchaValidation("CaptchaCode", "ExampleCaptcha", "驗證碼輸入錯誤!")]
+        [CaptchaValidation("CaptchaCode", "ExampleCaptcha", "Incorrect CAPTCHA code!")]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl, bool captchaValid)
@@ -95,7 +96,7 @@ namespace WebIndexHotel.Controllers
                 TempData["ValidateError"] = "驗證碼錯誤";
                 return View(model);
             }
-
+            
             // 這不會計算為帳戶鎖定的登入失敗
             // 若要啟用密碼失敗來觸發帳戶鎖定，請變更為 shouldLockout: true
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
@@ -134,8 +135,7 @@ namespace WebIndexHotel.Controllers
             {
                 var user = new ApplicationUser()
                 {
-                    UserName = model.Email,
-                    Email = model.Email,
+                    UserName = model.Email, Email = model.Email,
                     FirstName = model.FirstName,
                     LastName = model.LastName,
                     PersonalID = model.PersonalID,

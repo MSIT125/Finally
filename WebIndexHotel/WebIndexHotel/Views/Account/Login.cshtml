@@ -1,78 +1,75 @@
 ﻿@using WebIndexHotel.Models
 @using BotDetect.Web.Mvc;
-@model  LoginViewModel
-
-<div class="col-xl-4 col-lg-5 offset-xl-2 offset-lg-1">
-    <div class="booking-form">
-
-        @if (Request.IsAuthenticated)
-        {
-
-            @:<h3>Booking Your Hotel</h3>
-            using (Html.BeginForm("Index", "Home", FormMethod.Post))
-            {@Html.AntiForgeryToken()
-            <div class="check-date">
-                <label for="date-in">Check In:</label>
-                @Html.TextBox("date_in", null, new { @class = "date-input", @autocomplete = "off", @placeholder = "請選擇入住日期" })
-                <i class="icon_calendar"></i>
-            </div>
-            <div class="check-date">
-                <label for="date-out">Check Out:</label>
-                @Html.TextBox("date_out", null, new { @class = "date-input", @autocomplete = "off", @placeholder = "請選擇退房日期" })
-                <i class="icon_calendar"></i>
-            </div>
-            <div class="select-option">
-                <label for="guest">Guests:</label>
-                @Html.DropDownList("Guest", (IEnumerable<SelectListItem>)ViewBag.guestselect)
-            </div>
-            <div class="select-option">
-                <label for="room">Room:</label>
-                @Html.DropDownList("Room", (IEnumerable<SelectListItem>)ViewBag.roomselect)
-            </div>
-            <button type="submit">Check Availability</button>
-
-        }
-
-    }
-    else
-    {
-
-        <h3>Log in</h3>
-        using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-        {@Html.AntiForgeryToken()
-        <div class="check-date">
-            <label for="date-in">E-mail:</label>
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
-            <i class="icon_id"></i>
-        </div>
-        <div class="check-date">
-            <label for="date-out">Password:</label>
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-            <i class="icon_lock"></i>
-        </div>
-                MvcCaptcha exampleCaptcha = new MvcCaptcha("ExampleCaptcha");
-                exampleCaptcha.UserInputID = "CaptchaCode";
-                exampleCaptcha.CodeLength = 4; //幾個字元
-                exampleCaptcha.ImageSize = new System.Drawing.Size(120, 40); //調整寬高
-        @Html.Captcha(exampleCaptcha)
-        @Html.TextBox("CaptchaCode", null, new { placeholder = "請輸入驗證碼", required = "驗證碼必填" })
-        @Html.ValidationMessage("CaptchaCode");
-        <button type="submit">登入</button>
-
-    }
-    @Html.CheckBoxFor(m => m.RememberMe)
-    @Html.LabelFor(m => m.RememberMe)
-    @Html.ActionLink("註冊為新使用者", "Register")
-    @Html.ActionLink("忘記密碼?", "ForgotPassword")
-    @Html.Partial("~/Views/Account/_ExternalLoginsListPartial.cshtml", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-
+@model LoginViewModel
+@{
+    ViewBag.Title = "登入";
 }
 
+<h2>@ViewBag.Title.</h2>
+<div class="row">
+    <div class="col-md-8">
+        <section id="loginForm">
+            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                <h4>使用本機帳戶登入。</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group" id="emailbox">
+                    @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group" id="pwdbox">
+                    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-md-10" id="captchabox">
+                    @{ MvcCaptcha exampleCaptcha = new MvcCaptcha("ExampleCaptcha");
+                        exampleCaptcha.CodeLength = 4; //幾個字元
+                        exampleCaptcha.ImageSize = new System.Drawing.Size(120, 40); //調整寬高
+                    }
+                    @Html.Captcha(exampleCaptcha)
+                    @Html.TextBox("CaptchaCode", null, new { placeholder = "請輸入驗證碼",required="驗證碼必填"})
+                </div>
+                <div class="form-group" id="remebermebox">
+                    <div class="col-md-offset-2 col-md-10">
+                        <div class="checkbox">
+                            @Html.CheckBoxFor(m => m.RememberMe)
+                            @Html.LabelFor(m => m.RememberMe)
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="登入" class="btn btn-default" />
+                    </div>
+                </div>
+                <p>
+                    @Html.ActionLink("註冊為新使用者", "Register")
+                </p>
+                        //請在啟用密碼重設功能的帳戶確認之後啟用此項目
+                <p>
+                    @Html.ActionLink("忘記密碼?", "ForgotPassword")
+                </p>
+            }
+
+        </section>
+    </div>
+    <div class="col-md-4" id="thirdlogbox">
+        <section id="socialLoginForm">
+            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+        </section>
     </div>
 </div>
 
-
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <link href="@BotDetect.Web.CaptchaUrls.Absolute.LayoutStyleSheetUrl"
+          rel="stylesheet" type="text/css" />
+}

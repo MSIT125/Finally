@@ -36,7 +36,6 @@ namespace WebIndexHotel.Models
         public Nullable<bool> IsLocking { get; set; }
         public Nullable<bool> IsSubmit { get; set; }
         public string RoomTypeImg { get; set; }
-        public string Sub_Note { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DiscountCode> DiscountCode { get; set; }

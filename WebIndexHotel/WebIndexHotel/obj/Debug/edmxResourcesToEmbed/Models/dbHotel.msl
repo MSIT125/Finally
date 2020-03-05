@@ -155,7 +155,6 @@
     <EntitySetMapping Name="RoomType">
       <EntityTypeMapping TypeName="dbHotelModel.RoomType">
         <MappingFragment StoreEntitySet="RoomType">
-          <ScalarProperty Name="RoomTypeImg" ColumnName="RoomTypeImg" />
           <ScalarProperty Name="RoomTypeID" ColumnName="RoomTypeID" />
           <ScalarProperty Name="RoomTypeNameEN" ColumnName="RoomTypeNameEN" />
           <ScalarProperty Name="RoomTypeNameCN" ColumnName="RoomTypeNameCN" />

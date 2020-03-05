@@ -16,19 +16,18 @@
     var Normalprice = Session["Normalprice"];
     var holidayprice = Session["Holidayprice"];
     string breakfast = Session["offerBreakfast"].ToString();
-    var DiscountCodeAll = Session["DiscountCode"];
-    var DiscountCode = Session[$"DiscountCode{RoomTypeNameCN}"];
-
+    var DiscountCodeAll =Session["DiscountCode"];
+    var DiscountCode =Session[$"DiscountCode{RoomTypeNameCN}"]; 
     Double total = 0;
     for (int i = 0; i < Convert.ToInt32(duration); i++)
     {
-        if(Convert.ToDateTime(checkInDate).AddDays(i).DayOfWeek.ToString("d")=="0"|| Convert.ToDateTime(checkInDate).AddDays(i).DayOfWeek.ToString("d") == "6")
+        if (Convert.ToDateTime(checkInDate).AddDays(i).DayOfWeek.ToString("d") == "0" || Convert.ToDateTime(checkInDate).AddDays(i).DayOfWeek.ToString("d") == "6")
         {
-            total +=Convert.ToDouble(holidayprice);
+            total += Convert.ToDouble(holidayprice);
         }
         else
         {
-            total+= Convert.ToDouble(Normalprice);
+            total += Convert.ToDouble(Normalprice);
         }
     }
 
@@ -189,7 +188,7 @@
                     <div class="check-date">
                         <label for="date-in">
                             <font style="vertical-align:inherit;">訂購人姓名：</font>
-                            <input type="text" name="CustomerName" id="CustomerName" required="required" style="width:230px;" />
+                            <input type="text" name="CustomerName" id="CustomerName" required="required" style="width:250px;" />
                         </label>
                     </div>
 
@@ -197,14 +196,14 @@
                     <div class="check-date">
                         <label for="date-in">
                             <font style="vertical-align:inherit;">聯絡信箱 &nbsp;  &nbsp; ：</font>
-                            <input type="email" name="CustomerEmail" id="CustomerEmail" required="required" style="width:230px;" />
+                            <input type="email" name="CustomerEmail" id="CustomerEmail" required="required" style="width:250px;" />
                         </label>
                     </div>
 
                     <div class="check-date">
                         <label for="date-in">
                             <font style="vertical-align:inherit;">連絡電話 &nbsp;  &nbsp; ：</font>
-                            <input type="tel" name="PhoneNumber" id="PhoneNumber" required="required" style="width:230px;" />
+                            <input type="tel" name="PhoneNumber" id="PhoneNumber" required="required" style="width:250px;" />
                         </label>
                     </div>
 
@@ -218,14 +217,14 @@
                     <div class="check-date">
                         <label for="date-in">
                             <font style="vertical-align:inherit;">付款方式 &nbsp; &nbsp;：</font>
-                            <input type="text" name="Payment" value="信用卡" readonly="readonly" style="width:230px;" />
+                            <input type="text" name="Payment" value="信用卡" readonly="readonly" style="width:250px;" />
                         </label>
                     </div>
 
                     <div class="check-date">
                         <label for="date-in">
                             <font style="vertical-align:inherit;">持卡人姓名：</font>
-                            <input type="text" name="CardOwner" required="required" style="width:230px;" />
+                            <input type="text" name="CardOwner" required="required" style="width:250px;" />
                         </label>
                     </div>
 
@@ -233,7 +232,7 @@
                     <div class="check-date">
                         <label for="date-in">
                             <font style="vertical-align:inherit;">信用卡卡號：</font>
-                            <input type="text" name="CreditCardNumber" id="CreditCardNumber1" maxlength="16" required="required" style="width:230px;" />
+                            <input type="text" name="CreditCardNumber" id="CreditCardNumber1" maxlength="16" required="required" style="width:250px;" />
                         </label>
                     </div>
 
@@ -241,7 +240,7 @@
                     <div class="check-date">
                         <label for="date-in">
                             <font style="vertical-align:inherit;">末三碼 &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;：</font>
-                            <input type="text" name="CreditCardCode" maxlength="3" required="required" style="width:230px;" />
+                            <input type="text" name="CreditCardCode" maxlength="3" required="required" style="width:250px;" />
                         </label>
                     </div><br />
 
@@ -273,8 +272,7 @@
                     <div class="check-date">
                         <label for="date-in">
                             <font style="vertical-align:inherit;">結餘金額：</font>
-                            <br />&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;
-                            <label id="balance"></label>
+                            <input id="balance" name="money" readonly="readonly" style="width:250px"/>
                         </label>
                     </div>
                     <br><br>
@@ -333,7 +331,7 @@
 
                 //xhr.timeout = 3000;          //看要不要設定
 
-                xhr.open('POST', '@Url.Action("撈會員資料","Home",new {MemberID = 1 })');
+                xhr.open('POST', '@Url.Action("撈會員資料", "Home", new { MemberID = 1 })');
                 xhr.send(MemberID = 1);
 
                 xhr.addEventListener('load', function () {
@@ -372,7 +370,7 @@
 
         //信用卡卡號格式化====================================
         $(function() {
-            $('#CreditCard1').keyup(function() {
+            $('#CreditCardNumber1').keyup(function() {
                 var val = $(this).val();
                 val = val.replace(/(\d{4})(?=\d)/g, "$1 ");
                 console.log(val);
@@ -390,21 +388,22 @@
 
                     if (strValue.length == 0) {
                         $("#DiscountVerify").html("折扣碼錯誤");
-                        $("#balance").text(MONEY);
+                        $("#balance").val(MONEY);
                     }
                     else {
                         $("#DiscountVerify").html("折扣碼可使用");
-                        DISCOUNTUSED = true;
+                        DISCOUNTUSED = true; 
                         DCASH = strValue[0].Dollar;
                         DPERCENT = strValue[0].Percentage;
 
                         if (DISCOUNTUSED) {
                             $.post('/Home/訂房結算金額', { 'MONEY': MONEY, 'DCASH': DCASH, 'DPERCENT': DPERCENT }, function (data) {
-                                $('#balance').text(data)
+                                $('#balance').val(data)
                             })
                         } else {
                             //   console.log("false");
-                            $("#balance").text(MONEY);
+                            $("#balance").val(MONEY);
+
                         }
 
                     }
@@ -412,12 +411,15 @@
             } else
             {
                 $("#DiscountVerify").html("")
-                $("#balance").text(MONEY);
+                $("#balance").val(MONEY);
             }
 
         })//折扣碼
         //結餘金額=========================================
-      $("#balance").text(MONEY);
+        $("#balance").val(MONEY);
+        var money = $("#balance").val()
+      
+
     </script>
 
 }

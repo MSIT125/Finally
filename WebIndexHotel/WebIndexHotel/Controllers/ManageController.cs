@@ -8,16 +8,12 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using WebIndexHotel.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
-using WebIndexHotel.Viewmodel;
-using System.Collections.Generic;
 
 namespace WebIndexHotel.Controllers
 {
-    
     [Authorize]
     public class ManageController : Controller
     {
-        dbHotelTest_3_2_2020Entities db = new dbHotelTest_3_2_2020Entities();
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
@@ -262,27 +258,7 @@ namespace WebIndexHotel.Controllers
             base.Dispose(disposing);
         }
 
-        public ActionResult Personorder()
-        {
-            return View();
-        }
-        public ActionResult Person(string email)
-        {
-            List<personorder> a = new List<personorder>();
-            var p = db.Orders.Where(q => q.CustomerEmail == email).Select(q=>new {title=q.RoomType.RoomTypeNameCN,start =q.CheckInDate, end =q.CheckOutDate }).AsEnumerable().ToList();
-
-            foreach (var item in p)
-            {
-                personorder x = new personorder();
-                x.title = item.title;
-                x.start = Convert.ToDateTime(item.start).ToString("yyyy-MM-dd");
-                x.end = Convert.ToDateTime(item.end).AddDays(1).ToString("yyyy-MM-dd");
-                a.Add(x);
-            }
-            return Json(a, JsonRequestBehavior.AllowGet);
-        }
-
-        #region Helper
+#region Helper
         // 新增外部登入時用來當做 XSRF 保護
         private const string XsrfKey = "XsrfId";
 

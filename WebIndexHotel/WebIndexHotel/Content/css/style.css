@@ -485,7 +485,7 @@ ul, ol {
 
 .hero-section {
 	position: relative;
-	padding-top: 6px;
+	padding-top: 60px;
 	padding-bottom: 100px;
 }
 .hero-section .container {
@@ -731,7 +731,7 @@ ul, ol {
 	position: absolute;
 	left: 45px;
 	right: 25px;
-	bottom: -240px;
+	bottom: -350px;
 	-webkit-transition: all 0.5s;
 	-o-transition: all 0.5s;
 	transition: all 0.5s;
@@ -1942,7 +1942,7 @@ ul, ol {
 
 @media only screen and (min-width: 1554px) and (max-width: 1920px) {
 	.hp-room-items .hp-room-item .hr-text {
-		bottom: -280px;
+		bottom: -240px;
 	}
 }
 @media only screen and (min-width: 1200px) and (max-width: 1250px) {

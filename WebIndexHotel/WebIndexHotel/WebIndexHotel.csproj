@@ -255,12 +255,12 @@
     <Compile Include="Models\RoomType.cs">
       <DependentUpon>dbHotel0303.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Session_Dictionary.cs" />
     <Compile Include="Models\查房間.cs" />
     <Compile Include="Models\訂房搜尋引擎.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Viewmodel\Discount.cs" />
-    <Compile Include="Viewmodel\personorder.cs" />
     <Compile Include="Viewmodel\roomname.cs" />
     <Compile Include="Viewmodel\roomtypes.cs" />
     <Compile Include="Viewmodel\訂單資料.cs" />
@@ -461,9 +461,7 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
-    <Content Include="Web.config">
-      <SubType>Designer</SubType>
-    </Content>
+    <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -478,7 +476,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\關於我們.cshtml" />
     <Content Include="Views\Home\總房型.cshtml" />
-    <Content Include="Views\Home\最新優惠.cshtml" />
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
     <Content Include="Scripts\umd\popper.js.flow" />
@@ -492,6 +489,7 @@
     <Content Include="Views\Home\各房型.cshtml" />
     <Content Include="Views\Home\房型清單.cshtml" />
     <Content Include="Views\Home\訂房搜尋.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\訂房頁面.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
@@ -510,7 +508,8 @@
     <Content Include="Views\Manage\SetPassword.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\Info.cshtml" />
-    <Content Include="Views\Manage\Personorder.cshtml" />
+    <Content Include="Views\Home\檢視訂單結果.cshtml" />
+    <Content Include="Views\Home\最新優惠.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

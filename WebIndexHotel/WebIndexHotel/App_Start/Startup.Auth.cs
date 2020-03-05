@@ -55,13 +55,13 @@ namespace WebIndexHotel
             //   consumerSecret: "");
 
             app.UseFacebookAuthentication(
-               appId: "219906572487923",
-               appSecret: "f21719d7857cc788cf6ac0901f4db5c2");
+               appId: "419166892204580",
+               appSecret: "a948f97e1bc802e5488c761d3183ac81");
 
             app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             {
-                ClientId = "53206628420-b30nra4oik0flhs3vtcoucdet00atff5.apps.googleusercontent.com",
-                ClientSecret = "FTVeHgSQbQR1jOOdcelZsHW4"
+                ClientId = "53206628420-ua1hp58q0dghqvmrgnrsug4dtcbcid9v.apps.googleusercontent.com",
+                ClientSecret = "Ll7BD28h7e1lRsYpQjSdoX5q"
             });
         }
     }

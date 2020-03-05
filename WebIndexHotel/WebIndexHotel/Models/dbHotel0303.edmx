@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="dbHotelTest_3_2_2020Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="dbHotelModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -240,7 +240,6 @@
           <Property Name="IsLocking" Type="bit" />
           <Property Name="IsSubmit" Type="bit" />
           <Property Name="RoomTypeImg" Type="nvarchar(max)" />
-          <Property Name="Sub_Note" Type="nvarchar(max)" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Role="Customers" Type="Self.Customers" Multiplicity="1">
@@ -466,7 +465,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="dbHotelTest_3_2_2020ModelStoreContainer">
+        <EntityContainer Name="dbHotelModelStoreContainer">
           <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Administrator" EntityType="Self.Administrator" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
@@ -562,7 +561,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="dbHotelTest_3_2_2020Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="dbHotelModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="C__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -820,7 +819,6 @@
           <Property Name="IsLocking" Type="Boolean" />
           <Property Name="IsSubmit" Type="Boolean" />
           <Property Name="RoomTypeImg" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Sub_Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="DiscountCode" Relationship="Self.FK_DiscountCode_RoomType" FromRole="RoomType" ToRole="DiscountCode" />
           <NavigationProperty Name="Orders" Relationship="Self.FK_Order_RoomType" FromRole="RoomType" ToRole="Orders" />
           <NavigationProperty Name="RoomImage" Relationship="Self.FK_RoomImage_RoomType" FromRole="RoomType" ToRole="RoomImage" />
@@ -1026,7 +1024,7 @@
           <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="*" />
           <End Role="Customers" Type="Self.Customers" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="dbHotelTest_3_2_2020Entities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="dbHotelTest_2020_03_03Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
           <EntitySet Name="Administrator" EntityType="Self.Administrator" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" />
@@ -1118,9 +1116,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="dbHotelTest_3_2_2020ModelStoreContainer" CdmEntityContainer="dbHotelTest_3_2_2020Entities">
+        <EntityContainerMapping StorageEntityContainer="dbHotelModelStoreContainer" CdmEntityContainer="dbHotelTest_2020_03_03Entities">
           <EntitySetMapping Name="C__MigrationHistory">
-            <EntityTypeMapping TypeName="dbHotelTest_3_2_2020Model.C__MigrationHistory">
+            <EntityTypeMapping TypeName="dbHotelModel.C__MigrationHistory">
               <MappingFragment StoreEntitySet="__MigrationHistory">
                 <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
                 <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
@@ -1130,7 +1128,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Administrator">
-            <EntityTypeMapping TypeName="dbHotelTest_3_2_2020Model.Administrator">
+            <EntityTypeMapping TypeName="dbHotelModel.Administrator">
               <MappingFragment StoreEntitySet="Administrator">
                 <ScalarProperty Name="AdminID" ColumnName="AdminID" />
                 <ScalarProperty Name="AdminName" ColumnName="AdminName" />
@@ -1142,7 +1140,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetRoles">
-            <EntityTypeMapping TypeName="dbHotelTest_3_2_2020Model.AspNetRoles">
+            <EntityTypeMapping TypeName="dbHotelModel.AspNetRoles">
               <MappingFragment StoreEntitySet="AspNetRoles">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -1150,7 +1148,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetUserClaims">
-            <EntityTypeMapping TypeName="dbHotelTest_3_2_2020Model.AspNetUserClaims">
+            <EntityTypeMapping TypeName="dbHotelModel.AspNetUserClaims">
               <MappingFragment StoreEntitySet="AspNetUserClaims">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
@@ -1160,7 +1158,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetUserLogins">
-            <EntityTypeMapping TypeName="dbHotelTest_3_2_2020Model.AspNetUserLogins">
+            <EntityTypeMapping TypeName="dbHotelModel.AspNetUserLogins">
               <MappingFragment StoreEntitySet="AspNetUserLogins">
                 <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
                 <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
@@ -1169,7 +1167,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Customers">
-            <EntityTypeMapping TypeName="dbHotelTest_3_2_2020Model.Customers">
+            <EntityTypeMapping TypeName="dbHotelModel.Customers">
               <MappingFragment StoreEntitySet="Customers">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
@@ -1193,7 +1191,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="DiscountCode">
-            <EntityTypeMapping TypeName="dbHotelTest_3_2_2020Model.DiscountCode">
+            <EntityTypeMapping TypeName="dbHotelModel.DiscountCode">
               <MappingFragment StoreEntitySet="DiscountCode">
                 <ScalarProperty Name="DiscountID" ColumnName="DiscountID" />
                 <ScalarProperty Name="DiscountCode1" ColumnName="DiscountCode" />
@@ -1207,7 +1205,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Employee">
-            <EntityTypeMapping TypeName="dbHotelTest_3_2_2020Model.Employee">
+            <EntityTypeMapping TypeName="dbHotelModel.Employee">
               <MappingFragment StoreEntitySet="Employee">
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
@@ -1220,7 +1218,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Hotel">
-            <EntityTypeMapping TypeName="dbHotelTest_3_2_2020Model.Hotel">
+            <EntityTypeMapping TypeName="dbHotelModel.Hotel">
               <MappingFragment StoreEntitySet="Hotel">
                 <ScalarProperty Name="HotelID" ColumnName="HotelID" />
                 <ScalarProperty Name="ManagerID" ColumnName="ManagerID" />
@@ -1242,7 +1240,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="HotelImage">
-            <EntityTypeMapping TypeName="dbHotelTest_3_2_2020Model.HotelImage">
+            <EntityTypeMapping TypeName="dbHotelModel.HotelImage">
               <MappingFragment StoreEntitySet="HotelImage">
                 <ScalarProperty Name="HotelImgID" ColumnName="HotelImgID" />
                 <ScalarProperty Name="HotelID" ColumnName="HotelID" />
@@ -1252,7 +1250,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Members">
-            <EntityTypeMapping TypeName="dbHotelTest_3_2_2020Model.Members">
+            <EntityTypeMapping TypeName="dbHotelModel.Members">
               <MappingFragment StoreEntitySet="Members">
                 <ScalarProperty Name="MemberID" ColumnName="MemberID" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
@@ -1271,7 +1269,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Message">
-            <EntityTypeMapping TypeName="dbHotelTest_3_2_2020Model.Message">
+            <EntityTypeMapping TypeName="dbHotelModel.Message">
               <MappingFragment StoreEntitySet="Message">
                 <ScalarProperty Name="MesageID" ColumnName="MesageID" />
                 <ScalarProperty Name="MemberID" ColumnName="MemberID" />
@@ -1283,7 +1281,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Orders">
-            <EntityTypeMapping TypeName="dbHotelTest_3_2_2020Model.Orders">
+            <EntityTypeMapping TypeName="dbHotelModel.Orders">
               <MappingFragment StoreEntitySet="Orders">
                 <ScalarProperty Name="OrderID" ColumnName="OrderID" />
                 <ScalarProperty Name="MemberID" ColumnName="MemberID" />
@@ -1308,7 +1306,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PayInfo">
-            <EntityTypeMapping TypeName="dbHotelTest_3_2_2020Model.PayInfo">
+            <EntityTypeMapping TypeName="dbHotelModel.PayInfo">
               <MappingFragment StoreEntitySet="PayInfo">
                 <ScalarProperty Name="PayInfoID" ColumnName="PayInfoID" />
                 <ScalarProperty Name="CreditCardNumber" ColumnName="CreditCardNumber" />
@@ -1319,7 +1317,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="RoomImage">
-            <EntityTypeMapping TypeName="dbHotelTest_3_2_2020Model.RoomImage">
+            <EntityTypeMapping TypeName="dbHotelModel.RoomImage">
               <MappingFragment StoreEntitySet="RoomImage">
                 <ScalarProperty Name="RoomImgID" ColumnName="RoomImgID" />
                 <ScalarProperty Name="HotelID" ColumnName="HotelID" />
@@ -1330,7 +1328,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="RoomInformation">
-            <EntityTypeMapping TypeName="dbHotelTest_3_2_2020Model.RoomInformation">
+            <EntityTypeMapping TypeName="dbHotelModel.RoomInformation">
               <MappingFragment StoreEntitySet="RoomInformation">
                 <ScalarProperty Name="RoomID" ColumnName="RoomID" />
                 <ScalarProperty Name="HotelID" ColumnName="HotelID" />
@@ -1343,7 +1341,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="RoomType">
-            <EntityTypeMapping TypeName="dbHotelTest_3_2_2020Model.RoomType">
+            <EntityTypeMapping TypeName="dbHotelModel.RoomType">
               <MappingFragment StoreEntitySet="RoomType">
                 <ScalarProperty Name="RoomTypeID" ColumnName="RoomTypeID" />
                 <ScalarProperty Name="RoomTypeNameEN" ColumnName="RoomTypeNameEN" />
@@ -1358,11 +1356,10 @@
                 <ScalarProperty Name="IsLocking" ColumnName="IsLocking" />
                 <ScalarProperty Name="IsSubmit" ColumnName="IsSubmit" />
                 <ScalarProperty Name="RoomTypeImg" ColumnName="RoomTypeImg" />
-                <ScalarProperty Name="Sub_Note" ColumnName="Sub_Note" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="AspNetUserRoles" TypeName="dbHotelTest_3_2_2020Model.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="dbHotelModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
             <EndProperty Name="AspNetRoles">
               <ScalarProperty Name="Id" ColumnName="RoleId" />
             </EndProperty>

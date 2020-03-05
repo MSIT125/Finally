@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="dbHotelTest_3_2_2020Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+<Schema Namespace="dbHotelModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityType Name="C__MigrationHistory">
     <Key>
       <PropertyRef Name="MigrationId" />
@@ -257,7 +257,6 @@
     <Property Name="IsLocking" Type="Boolean" />
     <Property Name="IsSubmit" Type="Boolean" />
     <Property Name="RoomTypeImg" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Sub_Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="DiscountCode" Relationship="Self.FK_DiscountCode_RoomType" FromRole="RoomType" ToRole="DiscountCode" />
     <NavigationProperty Name="Orders" Relationship="Self.FK_Order_RoomType" FromRole="RoomType" ToRole="Orders" />
     <NavigationProperty Name="RoomImage" Relationship="Self.FK_RoomImage_RoomType" FromRole="RoomType" ToRole="RoomImage" />
@@ -463,7 +462,7 @@
     <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="*" />
     <End Role="Customers" Type="Self.Customers" Multiplicity="*" />
   </Association>
-  <EntityContainer Name="dbHotelTest_3_2_2020Entities" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="dbHotelTest_2020_03_03Entities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
     <EntitySet Name="Administrator" EntityType="Self.Administrator" />
     <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" />
