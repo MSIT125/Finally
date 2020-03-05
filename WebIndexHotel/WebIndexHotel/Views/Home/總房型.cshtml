@@ -1,0 +1,73 @@
+﻿@model List<WebIndexHotel.Model.roomtypes>
+@using  WebIndexHotel.Model
+@{
+    ViewBag.Title = "總房型";
+}
+<!-- Breadcrumb Section Begin -->
+<div class="breadcrumb-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb-text">
+                    <h2>房型</h2>
+                    <div class="bt-option">
+                        @Html.ActionLink("首頁", "Index", "Home")
+                        <span>總房型</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb Section End -->
+<!-- Rooms Section Begin -->
+<section class="rooms-section spad">
+    <div class="container">
+        <div class="row">
+            @foreach(roomtypes r in Model)
+            {
+            <div class="col-lg-4 col-md-6">
+                <div class="room-item">
+                    <img src="/img/room/room-1.jpg" alt="">
+                    <div class="ri-text">
+                        <h4>@r.RoomTypeNameCN</h4>
+                        <h3>@r.UnitPrice_Normal<span>/一晚</span></h3>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td class="r-o">Size:</td>
+                                    <td>30 ft</td>
+                                </tr>
+                                <tr>
+                                    <td class="r-o">Capacity:</td>
+                                    <td>Max persion 3</td>
+                                </tr>
+                                <tr>
+                                    <td class="r-o">Bed:</td>
+                                    <td>King Beds</td>
+                                </tr>
+                                <tr>
+                                    <td class="r-o">Services:</td>
+                                    <td>Wifi, Television, Bathroom,...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <a href="/Home/各房型/?name=@r.RoomTypeNameCN" class="primary-btn" >More Details</a>
+                        }
+
+
+
+                    </div>
+                </div>
+            </div>
+            }
+            
+
+        </div>
+    </div>
+</section>
+<!-- Rooms Section End -->

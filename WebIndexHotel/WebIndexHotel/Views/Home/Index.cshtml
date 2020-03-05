@@ -1,0 +1,267 @@
+﻿@using WebIndexHotel.Models
+@using BotDetect.Web.Mvc;
+@model  LoginViewModel
+
+
+@{
+    ViewBag.Title = "首頁";
+}
+
+
+<section class="hero-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="hero-text">
+                    <h1>Joker Hotel</h1>
+                    <p>
+                        這是最好的訂房網站,在這裡你可以訂到你想要的房間
+                    </p>
+                    <a href="/Home/總房型" class="primary-btn">Booking Now</a>
+                </div>
+            </div>
+
+
+          
+            @Html.Partial("~/Views/Account/Login.cshtml");
+
+
+
+
+        </div>
+    </div>
+    <div class="hero-slider owl-carousel">
+        <div class="hs-item set-bg" data-setbg="/img/searchbg/hero-1.jpg"></div>
+        <div class="hs-item set-bg" data-setbg="/img/searchbg/hero-2.jpg"></div>
+        <div class="hs-item set-bg" data-setbg="/img/searchbg/hero-3.jpg"></div>
+    </div>
+</section>
+<!-- Hero Section End -->
+<!-- About Us Section Begin -->
+<section class="aboutus-section spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="about-text">
+                    <div class="section-title">
+                        <span>關於我們</span>
+                        <h2>Intercontinental LA <br />Westlake Hotel</h2>
+                    </div>
+                    <p class="f-para">
+                        Sona.com is a leading online accommodation site. We’re passionate about
+                        travel. Every day, we inspire and reach millions of travelers across 90 local websites in 41
+                        languages.
+                    </p>
+                    <p class="s-para">
+                        So when it comes to booking the perfect hotel, vacation rental, resort,
+                        apartment, guest house, or tree house, we’ve got you covered.
+                    </p>
+                    <a href="/Home/關於我們" class="primary-btn about-btn">Read More</a>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="about-pic">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <img src="~/img/about/about-1.jpg" alt="">
+                        </div>
+                        <div class="col-sm-6">
+                            <img src="~/img/about/about-2.jpg" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- About Us Section End -->
+<!-- Services Section End -->
+<section class="services-section spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title">
+                    <span>What We Do</span>
+                    <h2>服務項目</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-lg-4 col-sm-6">
+                <div class="service-item">
+                    <i class="flaticon-033-dinner"></i>
+                    <h4>Catering Service</h4>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <div class="service-item">
+                    <i class="flaticon-026-bed"></i>
+                    <h4>Babysitting</h4>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <div class="service-item">
+                    <i class="flaticon-024-towel"></i>
+                    <h4>Laundry</h4>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <div class="service-item">
+                    <i class="flaticon-044-clock-1"></i>
+                    <h4>Hire Driver</h4>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <div class="service-item">
+                    <i class="flaticon-012-cocktail"></i>
+                    <h4>Bar & Drink</h4>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Services Section End -->
+<!-- Home Room Section Begin -->
+<section class="hp-room-section">
+    <div class="container-fluid">
+        <div class="hp-room-items">
+            <div class="row">
+                @foreach (var room in ViewBag.roomtype)
+                {
+                    <div class="col-lg-3 col-md-6">
+                        <div class="hp-room-item set-bg" data-setbg="@room.RoomImg">
+                            <div class="hr-text">
+                                <h3>
+                                    @room.RoomTypeNameCN
+                                </h3>
+                                <h2>@Convert.ToDouble(room.UnitPrice_Normal)<span>/一晚</span></h2>
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td class="r-o">Size:</td>
+                                            <td>30 ft</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="r-o">Capacity:</td>
+                                            <td>Persion @room.RoomGuests</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="r-o">Bed:</td>
+                                            <td>King Beds</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="r-o">Services:</td>
+                                            <td>Wifi, Television, Bathroom,...</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                @using (Html.BeginForm())
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <a href="/Home/各房型/?name=@room.RoomTypeNameCN" class="primary-btn">More Details</a>
+                                }
+
+
+                            </div>
+                        </div>
+                    </div>
+                }
+
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Home Room Section End -->
+<!-- Testimonial Section End -->
+<!-- Blog Section Begin -->
+<section class="blog-section spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title">
+                    <span>Hotel News</span>
+                    <h2>最新消息</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            @foreach (var item in ViewBag.discount)
+            {
+                <div class="col-lg-4 col-md-6">
+                    <div class="blog-item set-bg" data-setbg="/img/News/blog-1.jpg">
+                        <div class="bi-text">
+                            <span class="b-tag">優惠方案</span>
+                            @if (item.Roomtypename == null)
+                            {
+                                <h4><a href="@item.roomurl">全館優惠中...</a></h4>
+
+                                if (item.Dollar == 0)
+                                {
+                                    var percentage_off = (1 - item.Percentage) * 100;
+                                    System.Web.HttpContext.Current.Session["DiscountCode"] = item.DiscountCode;
+                                    System.Web.HttpContext.Current.Session["DiscountContent"] = percentage_off + " %";
+
+
+                                }
+                                else
+                                {
+                                    System.Web.HttpContext.Current.Session["DiscountCode"] = item.DiscountCode;
+                                    System.Web.HttpContext.Current.Session["DiscountContent"] = item.Dollar + " $";
+
+                                }
+                            }
+                            else
+                            {
+                                <h4><a href="@item.roomurl">@item.Roomtypename 優惠中...</a></h4>
+                                if (item.Dollar == 0)
+                                {
+                                    var percentage_off = (1 - item.Percentage) * 100;
+                                    System.Web.HttpContext.Current.Session[$"DiscountCode{item.Roomtypename}"] = item.DiscountCode;
+                                    System.Web.HttpContext.Current.Session[$"DiscountContent{item.Roomtypename}"] = percentage_off + " %";
+                                }
+                                else
+                                {
+                                    System.Web.HttpContext.Current.Session[$"DiscountCode{item.Roomtypename}"] = item.DiscountCode;
+                                    System.Web.HttpContext.Current.Session[$"DiscountContent{item.Roomtypename}"] = item.Dollar + " $";
+
+                                }
+                            }
+
+                            <div class="b-time"><i class="icon_clock_alt"></i>@item.StartTime~@item.EndTime</div>
+                        </div>
+                    </div>
+                </div>
+
+            }
+
+        </div>
+    </div>
+</section>
+<!-- Blog Section End -->
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <link href="@BotDetect.Web.CaptchaUrls.Absolute.LayoutStyleSheetUrl"
+          rel="stylesheet" type="text/css" />
+}
