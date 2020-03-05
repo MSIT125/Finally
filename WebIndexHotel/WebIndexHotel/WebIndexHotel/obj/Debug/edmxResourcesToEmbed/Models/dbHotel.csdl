@@ -181,7 +181,6 @@
     <NavigationProperty Name="DiscountCode" Relationship="Self.FK_DiscountCode_RoomType" FromRole="RoomType" ToRole="DiscountCode" />
     <NavigationProperty Name="Orders" Relationship="Self.FK_Order_RoomType" FromRole="RoomType" ToRole="Orders" />
     <NavigationProperty Name="RoomInformation" Relationship="Self.FK_RoomInformation_RoomType" FromRole="RoomType" ToRole="RoomInformation" />
-    <Property Name="RoomTypeImg" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="RoomType_Submit">
     <Key>

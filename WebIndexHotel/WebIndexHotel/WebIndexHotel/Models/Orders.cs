@@ -37,6 +37,8 @@ namespace WebIndexHotel.Models
         public virtual Hotel Hotel { get; set; }
         public virtual Members Members { get; set; }
         public virtual RoomType RoomType { get; set; }
+        public virtual Orders Orders1 { get; set; }
+        public virtual Orders Orders2 { get; set; }
         public virtual PayInfo PayInfo { get; set; }
         public virtual RoomInformation RoomInformation { get; set; }
     }

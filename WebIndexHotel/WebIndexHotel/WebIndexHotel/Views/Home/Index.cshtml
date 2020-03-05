@@ -13,36 +13,44 @@
                         <p>
                             這是最好的訂房網站,在這裡你可以訂到你想要的房間
                         </p>
-                        <a href="/Home/關於我們" class="primary-btn">Discover Now</a>
+                        <a href="#" class="primary-btn">Discover Now</a>
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-5 offset-xl-2 offset-lg-1">
                     <div class="booking-form">
                         <h3>Booking Your Hotel</h3>
-                        @using (Html.BeginForm("Index", "Home", FormMethod.Post))
-                        { @Html.AntiForgeryToken()
+                        @using (Html.BeginForm())
+                        {
+                            <form action="Index" >
                                 <div class="check-date">
                                     <label for="date-in">Check In:</label>
-                                   @Html.TextBox("date_in", null, new { @class = "date-input", @autocomplete = "off", @placeholder = "請選擇入住日期" })
+                                    <input type="text" class="date-input" id="date_in">
                                     <i class="icon_calendar"></i>
                                 </div>
                                 <div class="check-date">
                                     <label for="date-out">Check Out:</label>
-                                    @Html.TextBox("date_out", null, new { @class = "date-input", @autocomplete = "off", @placeholder = "請選擇退房日期" })
+                                    <input type="text" class="date-input" id="date-out">
                                     <i class="icon_calendar"></i>
                                 </div>
                                 <div class="select-option">
                                     <label for="guest">Guests:</label>
-                                    @Html.DropDownList("Guest", (IEnumerable<SelectListItem>)ViewBag.guestselect)
+                                    <select id="guest">
+                                        <option value="">1</option>
+                                        <option value="">2</option>
+                                        <option value="">3</option>
+                                        <option value="">4</option>
+                                    </select>
                                 </div>
                                 <div class="select-option">
                                     <label for="room">Room:</label>
-                                    @Html.DropDownList("Room", (IEnumerable<SelectListItem>)ViewBag.roomselect)
+                                    <select id="room">
+                                        <option value="">1 Room</option>
+                                        <option value="">2 Room</option>
+                                    </select>
                                 </div>
                                 <button type="submit">Check Availability</button>
-                        }
-                        
-                    </div>
+                            </form>}
+                        </div>
                 </div>
             </div>
         </div>
@@ -166,7 +174,7 @@
                     @foreach (var room in Model)
                     {
                         <div class="col-lg-3 col-md-6">
-                            <div class="hp-room-item set-bg" data-setbg="@room.RoomTypeImg">
+                            <div class="hp-room-item set-bg" data-setbg="/img/room/room-b1.jpg">
                                 <div class="hr-text">
                                     <h3>
                                         @room.RoomTypeNameCN
@@ -175,14 +183,13 @@
                                     <table>
                                         <tbody>
                                             <tr>
-                                                <td class="r-o">Capacity:</td>
-                                                <td>Persion @room.RoomGuests</td>
-                                            </tr>
-                                            <tr>
                                                 <td class="r-o">Size:</td>
                                                 <td>30 ft</td>
                                             </tr>
-
+                                            <tr>
+                                                <td class="r-o">Capacity:</td>
+                                                <td>Max persion 5</td>
+                                            </tr>
                                             <tr>
                                                 <td class="r-o">Bed:</td>
                                                 <td>King Beds</td>
@@ -224,57 +231,52 @@
                 </div>
             </div>
             <div class="row">
-                @foreach (var item in ViewBag.discount)
-                {
-                    <div class="col-lg-4 col-md-6">
-                        <div class="blog-item set-bg" data-setbg="/img/News/blog-1.jpg">
-                            <div class="bi-text">
-                                <span class="b-tag">優惠方案</span>
-                                @if (item.Roomtypename == null)
-                                {
-                                    <h4><a href="@item.roomurl">全館優惠中...</a></h4>
-
-                                    if (item.Dollar == 0)
-                                    {
-                                        var percentage_off =(1- item.Percentage )* 100;
-                                        System.Web.HttpContext.Current.Session["DiscountCode"] = item.DiscountCode;
-                                        System.Web.HttpContext.Current.Session["DiscountContent"] = percentage_off + " %";
-
-
-                                    }
-                                    else
-                                    {
-                                        System.Web.HttpContext.Current.Session["DiscountCode"] = item.DiscountCode;
-                                        System.Web.HttpContext.Current.Session["DiscountContent"] = item.Dollar + " $";
-
-                                    }
-                                }
-                                else
-                                {
-                                    <h4><a href="@item.roomurl">@item.Roomtypename 優惠中...</a></h4>
-                                    if (item.Dollar == 0)
-                                    {
-                                        var percentage_off = (1 - item.Percentage) * 100;
-                                        System.Web.HttpContext.Current.Session[$"DiscountCode{item.Roomtypename}"] = item.DiscountCode;
-                                        System.Web.HttpContext.Current.Session[$"DiscountContent{item.Roomtypename}"] = percentage_off + " %";
-                                    }
-                                    else
-                                    {
-                                        System.Web.HttpContext.Current.Session[$"DiscountCode{item.Roomtypename}"] = item.DiscountCode;
-                                        System.Web.HttpContext.Current.Session[$"DiscountContent{item.Roomtypename}"] = item.Dollar + " $";
-
-                                    }
-                                }
-
-                                <div class="b-time"><i class="icon_clock_alt"></i>@item.StartTime~@item.EndTime</div>
-                            </div>
+                <div class="col-lg-4">
+                    <div class="blog-item set-bg" data-setbg="/img/News/blog-1.jpg">
+                        <div class="bi-text">
+                            <span class="b-tag">Travel Trip</span>
+                            <h4><a href="#">Tremblant In Canada</a></h4>
+                            <div class="b-time"><i class="icon_clock_alt"></i> 15th April, 2019</div>
                         </div>
                     </div>
-
-                }
-
+                </div>
+                <div class="col-lg-4">
+                    <div class="blog-item set-bg" data-setbg="/img/News/blog-2.jpg">
+                        <div class="bi-text">
+                            <span class="b-tag">Camping</span>
+                            <h4><a href="#">Choosing A Static Caravan</a></h4>
+                            <div class="b-time"><i class="icon_clock_alt"></i> 15th April, 2019</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="blog-item set-bg" data-setbg="/img/News/blog-3.jpg">
+                        <div class="bi-text">
+                            <span class="b-tag">Event</span>
+                            <h4><a href="#">Copper Canyon</a></h4>
+                            <div class="b-time"><i class="icon_clock_alt"></i> 21th April, 2019</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="blog-item small-size set-bg" data-setbg="/img/News/blog-wide.jpg">
+                        <div class="bi-text">
+                            <span class="b-tag">Event</span>
+                            <h4><a href="#">Trip To Iqaluit In Nunavut A Canadian Arctic City</a></h4>
+                            <div class="b-time"><i class="icon_clock_alt"></i> 08th April, 2019</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="blog-item small-size set-bg" data-setbg="/img/News/blog-10.jpg">
+                        <div class="bi-text">
+                            <span class="b-tag">Travel</span>
+                            <h4><a href="#">Traveling To Barcelona</a></h4>
+                            <div class="b-time"><i class="icon_clock_alt"></i> 12th April, 2019</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
     <!-- Blog Section End -->
-

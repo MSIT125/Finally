@@ -39,14 +39,14 @@
                 <li>@Html.ActionLink("房型", "總房型", "Home")</li>
                 <li>@Html.ActionLink("關於我們", "關於我們", "Home")</li>
                 @*<li>
-                        <a href="./pages.html">Pages</a>
-                        <ul class="dropdown">
-                            <li><a href="./room-details.html">Room Details</a></li>
-                            <li><a href="#">Deluxe Room</a></li>
-                            <li><a href="#">Family Room</a></li>
-                            <li><a href="#">Premium Room</a></li>
-                        </ul>
-                    </li>*@
+                    <a href="./pages.html">Pages</a>
+                    <ul class="dropdown">
+                        <li><a href="./room-details.html">Room Details</a></li>
+                        <li><a href="#">Deluxe Room</a></li>
+                        <li><a href="#">Family Room</a></li>
+                        <li><a href="#">Premium Room</a></li>
+                    </ul>
+                </li>*@
                 <li>@Html.ActionLink("最新消息", "最新優惠", "Home")</li>
                 <li>@Html.ActionLink("聯絡", "Contact", "Home")</li>
             </ul>
@@ -57,7 +57,7 @@
     <!-- Offcanvas Menu Section End -->
     <!-- Header Section Begin -->
     <header class="header-section">
-        <div class="menu-item " style="background-color:whitesmoke">
+        <div class="menu-item " style="background-color:whitesmoke" >
             <div class="container ">
                 <div class="row">
                     <div class="col-lg-2">
@@ -76,7 +76,7 @@
                                     <li>
                                         @Html.ActionLink("房型", "總房型", "Home")
                                         <ul class="dropdown">
-                                            @Html.Action("房型清單","Home")
+                                            @Html.Action("房型清單")
                                         </ul>
                                     </li>
                                     <li>@Html.ActionLink("關於我們", "關於我們", "Home")</li>
@@ -91,10 +91,11 @@
                                         </li>*@
                                     <li>@Html.ActionLink("最新消息", "最新優惠", "Home")</li>
                                     <li>@Html.ActionLink("聯絡", "Contact", "Home")</li>
-                                    <li>@Html.ActionLink("登入/註冊", "Login", "Home")</li>
                                 </ul>
                             </nav>
-
+                            <nav class="mainmenu">
+                                <li><a href="./contact.html">登入/註冊</a></li>
+                            </nav>
 
                         </div>
                     </div>
@@ -142,8 +143,6 @@
     <!-- Search model end -->
     <!-- Js Plugins -->
     @Scripts.Render("~/Content/js")
-    @*魚-信用卡卡號type用*@
-    <script src="http://blog.mingsixue.com/js/code.js"></script>
     @RenderSection("scripts", required: false)
 
 </body>

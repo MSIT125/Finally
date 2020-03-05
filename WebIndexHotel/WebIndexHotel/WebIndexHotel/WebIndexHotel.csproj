@@ -19,7 +19,7 @@
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>44389</IISExpressSSLPort>
+    <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -47,63 +47,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BotDetect, Version=4.4.2.0, Culture=neutral, PublicKeyToken=74616036388b765f, processorArchitecture=MSIL">
-      <HintPath>..\packages\Captcha.4.4.2\lib\net35\BotDetect.dll</HintPath>
-    </Reference>
-    <Reference Include="BotDetect.Web.Mvc, Version=4.4.2.0, Culture=neutral, PublicKeyToken=74616036388b765f, processorArchitecture=MSIL">
-      <HintPath>..\packages\Captcha.4.4.2\lib\net35\BotDetect.Web.Mvc.dll</HintPath>
-    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.3\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.3\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.3\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Microsoft.Owin, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Owin.4.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.4.1.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Owin.Security, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Owin.Security.4.1.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Owin.Security.Cookies, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.4.1.0\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Owin.Security.Facebook, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.4.1.0\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Owin.Security.Google, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Owin.Security.Google.4.1.0\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Owin.Security.OAuth, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.4.1.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
-      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
-    </Reference>
-    <Reference Include="SendGrid, Version=9.12.7.0, Culture=neutral, PublicKeyToken=4f047e93159395ca, processorArchitecture=MSIL">
-      <HintPath>..\packages\SendGrid.9.12.7\lib\net452\SendGrid.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Data.SQLite, Version=1.0.112.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Data.SQLite.Core.1.0.112.0\lib\net46\System.Data.SQLite.dll</HintPath>
-    </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -174,96 +129,71 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Administrator.cs">
-      <DependentUpon>dbHotel0303.tt</DependentUpon>
+      <DependentUpon>dbHotel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\AspNetRoles.cs">
-      <DependentUpon>dbHotel0303.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\AspNetUserClaims.cs">
-      <DependentUpon>dbHotel0303.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\AspNetUserLogins.cs">
-      <DependentUpon>dbHotel0303.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Customers.cs">
-      <DependentUpon>dbHotel0303.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\C__MigrationHistory.cs">
-      <DependentUpon>dbHotel0303.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\dbHotel0303.Context.cs">
+    <Compile Include="Models\dbHotel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>dbHotel0303.Context.tt</DependentUpon>
+      <DependentUpon>dbHotel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\dbHotel0303.cs">
+    <Compile Include="Models\dbHotel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>dbHotel0303.tt</DependentUpon>
+      <DependentUpon>dbHotel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\dbHotel0303.Designer.cs">
+    <Compile Include="Models\dbHotel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>dbHotel0303.edmx</DependentUpon>
+      <DependentUpon>dbHotel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\DiscountCode.cs">
-      <DependentUpon>dbHotel0303.tt</DependentUpon>
+      <DependentUpon>dbHotel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Employee.cs">
-      <DependentUpon>dbHotel0303.tt</DependentUpon>
+      <DependentUpon>dbHotel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Hotel.cs">
-      <DependentUpon>dbHotel0303.tt</DependentUpon>
+      <DependentUpon>dbHotel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Hotelfactory.cs" />
-    <Compile Include="Models\HotelImage.cs">
-      <DependentUpon>dbHotel0303.tt</DependentUpon>
+    <Compile Include="Models\HotelImg.cs">
+      <DependentUpon>dbHotel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\LOrders.cs" />
-    <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Members.cs">
-      <DependentUpon>dbHotel0303.tt</DependentUpon>
+      <DependentUpon>dbHotel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Message.cs">
-      <DependentUpon>dbHotel0303.tt</DependentUpon>
+      <DependentUpon>dbHotel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\OrderFactory.cs" />
     <Compile Include="Models\Orders.cs">
-      <DependentUpon>dbHotel0303.tt</DependentUpon>
+      <DependentUpon>dbHotel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PayInfo.cs">
-      <DependentUpon>dbHotel0303.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\RoomImage.cs">
-      <DependentUpon>dbHotel0303.tt</DependentUpon>
+      <DependentUpon>dbHotel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\RoomInformation.cs">
-      <DependentUpon>dbHotel0303.tt</DependentUpon>
+      <DependentUpon>dbHotel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\RoomType.cs">
-      <DependentUpon>dbHotel0303.tt</DependentUpon>
+      <DependentUpon>dbHotel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Session_Dictionary.cs" />
+    <Compile Include="Models\RoomTypeImg.cs">
+      <DependentUpon>dbHotel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RoomType_Submit.cs">
+      <DependentUpon>dbHotel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\查房間.cs" />
     <Compile Include="Models\訂房搜尋引擎.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Startup.cs" />
-    <Compile Include="Viewmodel\Discount.cs" />
     <Compile Include="Viewmodel\roomname.cs" />
     <Compile Include="Viewmodel\roomtypes.cs" />
-    <Compile Include="Viewmodel\訂單資料.cs" />
     <Compile Include="Viewmodel\訂房條件.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -343,15 +273,15 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\FontAwesome.otf" />
-    <Content Include="Models\dbHotel0303.Context.tt">
+    <Content Include="Models\dbHotel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>dbHotel0303.edmx</DependentUpon>
-      <LastGenOutput>dbHotel0303.Context.cs</LastGenOutput>
+      <DependentUpon>dbHotel.edmx</DependentUpon>
+      <LastGenOutput>dbHotel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\dbHotel0303.tt">
+    <Content Include="Models\dbHotel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>dbHotel0303.edmx</DependentUpon>
-      <LastGenOutput>dbHotel0303.cs</LastGenOutput>
+      <DependentUpon>dbHotel.edmx</DependentUpon>
+      <LastGenOutput>dbHotel.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -370,12 +300,12 @@
     <Content Include="Scripts\bootstrap.js.map" />
     <Content Include="Scripts\bootstrap.bundle.min.js.map" />
     <Content Include="Scripts\bootstrap.bundle.js.map" />
-    <EntityDeploy Include="Models\dbHotel0303.edmx">
+    <EntityDeploy Include="Models\dbHotel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>dbHotel0303.Designer.cs</LastGenOutput>
+      <LastGenOutput>dbHotel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\dbHotel0303.edmx.diagram">
-      <DependentUpon>dbHotel0303.edmx</DependentUpon>
+    <Content Include="Models\dbHotel.edmx.diagram">
+      <DependentUpon>dbHotel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -476,6 +406,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\關於我們.cshtml" />
     <Content Include="Views\Home\總房型.cshtml" />
+    <Content Include="Views\Home\最新優惠.cshtml" />
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
     <Content Include="Scripts\umd\popper.js.flow" />
@@ -489,27 +420,6 @@
     <Content Include="Views\Home\各房型.cshtml" />
     <Content Include="Views\Home\房型清單.cshtml" />
     <Content Include="Views\Home\訂房搜尋.cshtml" />
-    <Content Include="Views\Home\Login.cshtml" />
-    <Content Include="Views\Home\訂房頁面.cshtml" />
-    <Content Include="Views\Account\ConfirmEmail.cshtml" />
-    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
-    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
-    <Content Include="Views\Account\ForgotPassword.cshtml" />
-    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Account\ResetPassword.cshtml" />
-    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
-    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
-    <Content Include="Views\Manage\ChangePassword.cshtml" />
-    <Content Include="Views\Manage\EditUserInfo.cshtml" />
-    <Content Include="Views\Manage\Index.cshtml" />
-    <Content Include="Views\Manage\ManageLogins.cshtml" />
-    <Content Include="Views\Manage\SetPassword.cshtml" />
-    <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Shared\Info.cshtml" />
-    <Content Include="Views\Home\檢視訂單結果.cshtml" />
-    <Content Include="Views\Home\最新優惠.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -544,7 +454,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>59442</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>https://localhost:44390/</IISUrl>
+          <IISUrl>http://localhost:59442/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
@@ -559,9 +469,7 @@
       <ErrorText>此專案參考這部電腦上所缺少的 NuGet 套件。請啟用 NuGet 套件還原，以下載該套件。如需詳細資訊，請參閱 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的檔案是 {0}。</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
-    <Error Condition="!Exists('..\packages\System.Data.SQLite.Core.1.0.112.0\build\net46\System.Data.SQLite.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\System.Data.SQLite.Core.1.0.112.0\build\net46\System.Data.SQLite.Core.targets'))" />
   </Target>
-  <Import Project="..\packages\System.Data.SQLite.Core.1.0.112.0\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.112.0\build\net46\System.Data.SQLite.Core.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
